@@ -7,15 +7,17 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import Logo from '../../Logo/Logo';
 
 const Navbar = () => (
-    <header className="container">
-        <div>
-            <Logo />
-        </div>
-        <nav>
-            <NavigationItems />
-        </nav>
-        <div className="shopping-cart">
-            <a href="#"><FontAwesomeIcon icon={faShoppingCart} style={{ color: '#ccc' }}/></a>
+    <header>
+        <div className="container">
+            <div>
+                <Logo />
+            </div>
+            <nav>
+                <NavigationItems />
+            </nav>
+            <div className="shopping-cart">
+                <a href="#"><FontAwesomeIcon icon={faShoppingCart} style={{ color: '#ccc' }}/></a>
+            </div>
         </div>
     </header>
 );

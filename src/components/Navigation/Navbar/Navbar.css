@@ -1,16 +1,18 @@
 header {
     background-color: #232323;
-    box-shadow: 0 2px 3px #ccc;
+}
+
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #ccc;
 }
 
-header nav {
+header .container nav {
     margin-left: -60px;
 }
 
-header .shopping-cart {
+header .container .shopping-cart {
     font-size: 1.3rem;
 }
