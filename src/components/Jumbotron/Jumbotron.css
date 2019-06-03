@@ -7,4 +7,5 @@
     flex-direction: column;
     justify-content: center;
     height: 75vh;
+    box-shadow: 0 10px 10px #ccc;
 }

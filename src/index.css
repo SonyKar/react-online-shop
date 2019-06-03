@@ -6,23 +6,89 @@ body {
 .container {
   padding: 0 5rem;
 }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
 .m-0 {
   margin: 0!important;
 }
+.mt-3 {
+  margin-top: 3rem!important;
+}
+.text-center {
+  text-align: center!important;
+}
+.border-right {
+  border-right: 1px solid #ccc!important;
+}
+.border-left {
+  border-left: 1px solid #ccc!important;
+}
+
+
+
+/***********
++
+Grid
++
+***********/
+
+
+
+.col-3 {
+  width: 33.33%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.col-12 {
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+
+
+/***********
++
+UI Elements
++
+***********/
+
+
 
 .btn {
   text-decoration: none;
   padding: .8rem .9rem;
   font-size: .8rem;
   font-weight: bold;
+  transition: all .5s ease;
+  box-sizing: border-box;
 }
 .btn-light {
-  border: 1px solid #ccc;
+  border: 2px solid #fff;
   color: #232323;
   background-color: #fff;
 }
-.btn-light {
-  border: 1px solid #232323;
+.btn-light:hover,
+.btn-light:active {
+  color: #fff;
+  background-color: transparent;
+}
+.btn-dark {
+  border: 2px solid #232323;
   color: #ccc;
   background-color: #232323;
+}
+.btn-dark:hover,
+.btn-dark:active {
+  color: #232323;
+  background-color: transparent;
+}
+
+.line {
+  width: 5%;
+  height: 1px;
+  background-color: #232323;
+  margin: auto;
 }

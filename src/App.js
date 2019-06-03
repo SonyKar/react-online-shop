@@ -2,13 +2,13 @@ import React from 'react';
 
 import './App.css';
 import Layout from './hoc/Layout/Layout';
-import Jumbotron from './components/Jumbotron/Jumbotron';
+import Home from './containers/Home/Home';
 
 function App() {
   return (
     <div className="App">
       <Layout>
-        <Jumbotron />
+        <Home />
       </Layout>
     </div>
   );

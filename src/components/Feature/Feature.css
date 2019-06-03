@@ -1,0 +1,10 @@
+.Feature {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 2rem;
+    transition: all .3s ease;
+}
+.Feature:hover {
+    outline: 1px solid #e2e2e2;
+    box-shadow: 0 2px 3px #ccc;
+}
