@@ -13,20 +13,43 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
+.pt-1 {
+  padding-top: 1rem!important;
+}
 .m-0 {
   margin: 0!important;
+}
+.mt-1 {
+  margin-top: 1rem!important;
 }
 .mt-3 {
   margin-top: 3rem!important;
 }
+
 .text-center {
   text-align: center!important;
 }
-.border-right {
-  border-right: 1px solid #ccc!important;
+.text-secondary {
+  color: #848484;
+  font-size: .9rem;
 }
-.border-left {
-  border-left: 1px solid #ccc!important;
+.link {
+  text-decoration: none;
+  color: #232323;
+}
+
+.d-flex {
+  display: flex;
+} 
+.flex-column {
+  flex-direction: column;
+} 
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-space-between {
+  justify-content: space-between;
 }
 
 
@@ -40,7 +63,7 @@ Grid
 
 
 @media (max-width: 768px) {
-  .col-3, .col-12 {
+  .col-2, .col-3, .col-12 {
     width: 100%!important;
   }
   .Feature {
@@ -58,15 +81,18 @@ Grid
 
 
 
-.col-3 {
-  width: 33.33%;
+.col-2, .col-3, .col-12 {
   padding: 0 1rem;
   box-sizing: border-box;
 }
+.col-2 {
+  width: 20%;
+}
+.col-3 {
+  width: 33.33%;
+}
 .col-12 {
   width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
 }
 
 
@@ -84,7 +110,7 @@ UI Elements
   padding: .8rem .9rem;
   font-size: .8rem;
   font-weight: bold;
-  transition: all .5s ease;
+  transition: all .2s ease;
   box-sizing: border-box;
 }
 .btn-light {

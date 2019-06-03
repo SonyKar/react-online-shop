@@ -1,4 +1,7 @@
 .Logo {
     box-sizing: border-box;
     border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 1.1rem 0;
 }

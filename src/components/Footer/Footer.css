@@ -1,0 +1,30 @@
+footer {
+    padding: 3rem 0 1rem 0;
+}
+footer h5 {
+    letter-spacing: 3px;
+}
+footer input {
+    width: 90%;
+    box-sizing: border-box;
+    padding: .8rem;
+    color: #000;
+}
+footer button {
+    width: 35%;
+    margin-top: 20px;
+    background-color: #232323;
+    border: 1px solid #232323;
+    padding: .8rem 1rem;
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: .7rem;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+footer button:hover {
+    background-color: transparent;
+    color: #232323;
+}
