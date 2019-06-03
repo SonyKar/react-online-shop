@@ -2,14 +2,15 @@
     text-align: center;
     padding: 3rem 0;
     margin-top: 2rem;
-    transition: all .3s ease;
+    transition: all .2s ease;
+    outline: 2px solid transparent;
 }
 .Feature:hover {
-    outline: 1px solid #e2e2e2;
-    box-shadow: 0 2px 3px #ccc;
+    outline-color: #4B4B4B;
 }
 .Feature p * {
     font-size: 3rem;
+    color: #232323;
     background-color: #ccc;
     padding: 2rem;
     border-radius: 25%;

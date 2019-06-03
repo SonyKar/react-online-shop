@@ -16,7 +16,7 @@ const Features = () => (
                 <Feature caption="All Sizes" icon={faArrowsAlt} />
                 <Feature caption="Fast Delivery" icon={faTruckLoading} />
                 <div className="col-12 text-center mt-3">
-                    <a href="#" className="btn btn-dark">CHECK OUT OUR STORE</a>
+                    <a href="#" className="btn btn-light">CHECK OUT OUR STORE</a>
                 </div>
             </div>
         </div>
