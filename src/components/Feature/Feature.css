@@ -8,3 +8,10 @@
     outline: 1px solid #e2e2e2;
     box-shadow: 0 2px 3px #ccc;
 }
+.Feature p * {
+    font-size: 3rem;
+    background-color: #ccc;
+    padding: 2rem;
+    border-radius: 25%;
+    margin-bottom: 2rem;
+}

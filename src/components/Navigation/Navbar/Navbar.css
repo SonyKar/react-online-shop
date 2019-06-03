@@ -10,3 +10,7 @@ header {
 header nav {
     margin-left: -60px;
 }
+
+header .shopping-cart {
+    font-size: 1.3rem;
+}

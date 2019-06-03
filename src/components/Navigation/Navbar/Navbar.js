@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import "./Navbar.css";
 import NavigationItems from '../NavigationItems/NavigationItems';
@@ -12,8 +14,8 @@ const Navbar = () => (
         <nav>
             <NavigationItems />
         </nav>
-        <div>
-            Cart
+        <div className="shopping-cart">
+            <a href="#"><FontAwesomeIcon icon={faShoppingCart} style={{ color: '#ccc' }}/></a>
         </div>
     </header>
 );
