@@ -1,0 +1,11 @@
+header {
+    box-shadow: 0 2px 3px #ccc;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav {
+    margin-left: -60px;
+}

@@ -1,0 +1,22 @@
+ul.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.navbar-menu li {
+    display: inline-block;
+    margin: 20px;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #000;
+}
+
+.navbar-menu a:hover,
+.navbar-menu a:active,
+.navbar-menu a.active {
+    color: #848484;
+}
