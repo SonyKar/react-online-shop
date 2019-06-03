@@ -8,7 +8,18 @@ footer input {
     width: 90%;
     box-sizing: border-box;
     padding: .8rem;
-    color: #000;
+    color: #848484;
+    font-size: .8rem;
+    letter-spacing: 1.5px;
+    outline: none;
+    border: 1px solid #ccc;
+    transition: border .3s ease;
+}
+footer input:hover {
+    border-color: #848484;
+}
+footer input:focus {
+    border-color: #232323;
 }
 footer button {
     width: 35%;
