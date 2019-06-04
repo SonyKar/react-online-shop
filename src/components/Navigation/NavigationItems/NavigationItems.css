@@ -18,6 +18,8 @@ ul.navbar-menu-vertical a, ul.navbar-menu-horizontal a {
     letter-spacing: 2px;
     font-size: 0.8rem;
     font-weight: bold;
+    transition: all .3s ease;
+    padding-bottom: 5px;
 }
 
 ul.navbar-menu-horizontal a {
@@ -29,9 +31,12 @@ ul.navbar-menu-vertical a {
 }
 
 ul.navbar-menu-horizontal a:hover,
-ul.navbar-menu-horizontal a:active,
-ul.navbar-menu-horizontal a.active {
+ul.navbar-menu-horizontal a:active {
     color: #848484;
+    border-bottom: 2px solid #ccc;
+}
+ul.navbar-menu-horizontal a.active {
+    border-bottom: 2px solid #ccc;
 }
 
 ul.navbar-menu-vertical a:hover,

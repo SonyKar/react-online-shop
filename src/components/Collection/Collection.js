@@ -7,7 +7,7 @@ const Collection = (props) => (
         <div className="Collection" style={{
             backgroundImage: `url(${props.image})`
         }}>
-            <h2>COLLECTION NAME</h2>
+            <h2>{props.name}</h2>
             <a href="#" className="btn btn-light">VIEW PRODUCTS</a>
         </div>
     </div>

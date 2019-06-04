@@ -16,7 +16,7 @@ const Navbar = () => (
                 <NavigationItems />
             </nav>
             <div className="shopping-cart">
-                <a href="#"><FontAwesomeIcon icon={faShoppingCart} style={{ color: '#ccc' }}/></a>
+                <FontAwesomeIcon icon={faShoppingCart} style={{ color: '#ccc' }}/>
             </div>
         </div>
     </header>
