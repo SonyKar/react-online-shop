@@ -35,7 +35,6 @@ ul.navbar-menu-horizontal a.active {
 }
 
 ul.navbar-menu-vertical a:hover,
-ul.navbar-menu-vertical a:active,
-ul.navbar-menu-vertical a.active {
+ul.navbar-menu-vertical a:active {
     color: #232323;
 }

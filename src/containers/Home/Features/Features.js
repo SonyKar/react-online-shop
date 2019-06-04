@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { faGem, faArrowsAlt, faTruckLoading } from '@fortawesome/free-solid-svg-icons';
 
 import "./Features.css";
@@ -16,7 +17,7 @@ const Features = () => (
                 <Feature caption="All Sizes" icon={faArrowsAlt} />
                 <Feature caption="Fast Delivery" icon={faTruckLoading} />
                 <div className="col-12 text-center mt-3">
-                    <a href="#" className="btn btn-light">CHECK OUT OUR STORE</a>
+                    <NavLink to="/collections" className="btn btn-light">CHECK OUT OUR STORE</NavLink>
                 </div>
             </div>
         </div>

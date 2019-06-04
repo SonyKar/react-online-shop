@@ -2,6 +2,7 @@ import React from 'react';
 
 import "./Collections.css";
 import Collection from '../../../components/Collection/Collection';
+import Footer from '../../../components/Footer/Footer';
 
 import Collection1 from '../../../assets/img/collection1.jpg';
 import Collection2 from '../../../assets/img/collection2.jpg';
