@@ -1,14 +1,20 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './Collection.css';
 
 const Collection = (props) => (
-    <div className="col-3">
+    <div className="col-4">
         <div className="Collection" style={{
             backgroundImage: `url(${props.image})`
         }}>
             <h2>{props.name}</h2>
-            <a href="#" className="btn btn-light">VIEW PRODUCTS</a>
+            <NavLink to={{
+                pathname: '/collections/' + props.name.toLowerCase().replace('-', '').replace(' ', '-'),
+                state: {
+                    collectionName: props.name
+                }
+            }} className="btn btn-light">VIEW PRODUCTS</NavLink>
         </div>
     </div>
 );

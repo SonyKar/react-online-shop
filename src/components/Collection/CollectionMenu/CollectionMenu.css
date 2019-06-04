@@ -1,0 +1,29 @@
+.CollectionMenu .productsSize {
+    padding: 1rem 0;
+    width: 150px;
+    text-align: center;
+    border: none;
+    border-right: 1px solid #ccc;
+}
+
+.CollectionMenu .productsSize svg {
+    font-size: 1.5rem;
+    color: #ccc;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+.CollectionMenu .productsSize svg.selected,
+.CollectionMenu .productsSize svg:hover {
+    color: #232323;
+}
+.CollectionMenu .productsSize svg:not(:first-child) {
+    margin-left: 20px;
+}
+
+.CollectionMenu .whiteSpace {
+    width: 100%;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}

@@ -1,0 +1,35 @@
+.Select {
+    position: relative;
+    width: 150px;
+}
+
+.Select button {
+    padding: 1.27rem 0;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-left: 1px solid #ccc;
+    outline: none;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Select .popover {
+    border: 1px solid #f5f5f5;
+    box-shadow: 0 3px 5px #ccc;
+    background-color: #f5f5f5;
+    text-align: center;
+    color: #232323;
+    width: 270px;
+    position: absolute;
+    top: 70px;
+    left: -150px;
+}
+.Select .popover button {
+    border: none;
+}
+.Select .popover button:active {
+    background-color: #fff;
+}

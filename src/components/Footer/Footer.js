@@ -8,13 +8,13 @@ const Footer = () => (
     <footer>
         <div className="container">
             <div className="row">
-                <div className="col-3 d-flex flex-column justify-content-center">
+                <div className="col-4 d-flex flex-column justify-content-center">
                     <Logo />
                     <p className="text-secondary m-0">
                         Are you ready for your next day?
                     </p>
                 </div>
-                <div className="col-3">
+                <div className="col-4">
                     <h5>NEWSLETTER</h5>
                     <p className="text-secondary">
                         Subscribe to receive updates, access to exclusive deals, and more.
@@ -24,7 +24,7 @@ const Footer = () => (
                         <button>SUBSCRIBE</button>
                     </form>
                 </div>
-                <div className="col-3">
+                <div className="col-4">
                     <h5>MAIN MENU</h5>
                     <NavigationItems isVertical />
                 </div> 
