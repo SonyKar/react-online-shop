@@ -30,7 +30,7 @@ const Footer = () => (
                 </div> 
                 <div className="col-12 mt-1 pt-1" style={{borderTop: '1px solid #ccc'}}>
                     <h5 className="m-0">© 2019 DOUBLE M</h5>
-                    <p className="text-secondary" style={{marginTop: '.5rem'}}>Created by <a href="https://www.facebook.com/sa.caraganciu" className="link" target="_blank">A.C.</a></p>
+                    <p className="text-secondary" style={{marginTop: '.5rem'}}>Created by <a href="https://www.facebook.com/sa.caraganciu" className="link" rel="noopener noreferrer" target="_blank">A.C.</a></p>
                 </div>
             </div>
         </div>

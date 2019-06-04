@@ -26,6 +26,9 @@ body {
 .mt-3 {
   margin-top: 3rem!important;
 }
+.mb-2 {
+  margin-bottom: 2rem!important;
+}
 
 .text-center {
   text-align: center!important;
@@ -63,7 +66,7 @@ Grid
 
 
 @media (max-width: 768px) {
-  .col-2, .col-3, .col-12 {
+  .col-2, .col-3 {
     width: 100%!important;
   }
   .Feature {
@@ -108,10 +111,11 @@ UI Elements
 .btn {
   text-decoration: none;
   padding: .8rem .9rem;
-  font-size: .8rem;
+  font-size: .7rem;
   font-weight: bold;
   transition: all .2s ease;
   box-sizing: border-box;
+  letter-spacing: 1.5px;
 }
 .btn-light {
   border: 2px solid #ccc;

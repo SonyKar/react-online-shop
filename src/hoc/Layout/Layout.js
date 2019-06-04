@@ -10,7 +10,7 @@ class Layout extends Component {
         return (
             <React.Fragment>
                 <Navbar />
-                <main>
+                <main style={{paddingTop: '60px'}}>
                     {this.props.children}
                 </main>
             </React.Fragment>

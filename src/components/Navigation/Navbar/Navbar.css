@@ -1,5 +1,9 @@
 header {
     background-color: #232323;
+    box-shadow: 0 2px 3px #232323;
+    position: fixed;
+    width: 100%;
+    z-index: 99999999;
 }
 
 header .container {
