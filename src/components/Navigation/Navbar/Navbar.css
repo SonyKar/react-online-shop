@@ -7,9 +7,6 @@ header {
 }
 
 header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     color: #ccc;
 }
 
@@ -19,4 +16,18 @@ header .container nav {
 
 header .container .shopping-cart {
     font-size: 1.3rem;
+}
+
+header .Auth {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+header .Auth a {
+    color: #ccc;
+    letter-spacing: 2px;
+    margin-left: 20px;
+    font-size: .8rem;
 }

@@ -13,6 +13,9 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+a {
+  text-decoration: none;
+}
 
 .pt-1 {
   padding-top: 1rem!important;
@@ -60,6 +63,9 @@ body {
 .align-items-stretch {
   align-items: stretch;
 }
+.align-items-center {
+  align-items: center;
+}
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -95,6 +101,9 @@ Grid
   }
   .Feature {
     margin-top: 0!important;
+  }
+  .DesktopOnly {
+    display: none!important;
   }
 }
 @media (max-width: 540px) {
