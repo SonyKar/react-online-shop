@@ -4,6 +4,7 @@ footer {
 }
 footer h5 {
     letter-spacing: 3px;
+    word-break: break-all;
 }
 footer input {
     width: 90%;
@@ -23,7 +24,6 @@ footer input:focus {
     border-color: #232323;
 }
 footer button {
-    width: 35%;
     margin-top: 20px;
     background-color: #232323;
     border: 1px solid #232323;
@@ -39,4 +39,10 @@ footer button {
 footer button:hover {
     background-color: transparent;
     color: #232323;
+}
+
+@media (max-width: 270px) {
+    footer button {
+        padding: .8rem 0.3rem;
+    }
 }

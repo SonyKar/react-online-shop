@@ -23,6 +23,9 @@ body {
 .mt-1 {
   margin-top: 1rem!important;
 }
+.mt-2 {
+  margin-top: 2rem!important;
+}
 .mt-3 {
   margin-top: 3rem!important;
 }
@@ -54,6 +57,12 @@ body {
 .justify-content-space-between {
   justify-content: space-between;
 }
+.align-items-stretch {
+  align-items: stretch;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
 
 
 
@@ -65,12 +74,27 @@ Grid
 
 
 
+@media (min-width: 1260px) {
+  .col-xl-4 {
+    width: 33.33%!important;
+  }
+}
 @media (max-width: 768px) {
-  .col-2, .col-3, .col-4, .col-5 {
+  .col-2, .col-3, .col-4, .col-5, .col-6 {
     width: 100%!important;
   }
   .Feature {
     margin-top: 0!important;
+  }
+}
+@media (max-width: 540px) {
+  .container {
+    padding: 0 .5rem;
+  }
+}
+@media (max-width: 340px) {
+  .btn {
+      display: block;
   }
 }
 
@@ -84,7 +108,7 @@ Grid
 
 
 
-.col-2, .col-3, .col-4, .col-5 .col-12 {
+.col-2, .col-3, .col-4, .col-5, .col-6, .col-12, .col-xl-4 {
   padding: 0 1rem;
   box-sizing: border-box;
 }
@@ -100,9 +124,15 @@ Grid
 .col-5 {
   width: 41.66%;
 }
+.col-6 {
+  width: 50%;
+}
 .col-12 {
   width: 100%;
 }
+/* .col-xl-3 {
+  width: 100%;
+} */
 
 
 

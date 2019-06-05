@@ -19,6 +19,7 @@
 .Select .popover {
     border: 1px solid #f5f5f5;
     box-shadow: 0 3px 5px #ccc;
+    box-sizing: border-box;
     background-color: #f5f5f5;
     text-align: center;
     color: #232323;
@@ -26,10 +27,44 @@
     position: absolute;
     top: 70px;
     left: -150px;
+    animation: fadeIn .5s ease 0s 1 normal backwards;
 }
 .Select .popover button {
     border: none;
 }
 .Select .popover button:active {
     background-color: #fff;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeInDown {
+    0% {
+        bottom: -100%;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .Select {
+        width: 100%!important;
+        position: static;
+    }
+    .Select .popover {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        top: auto;
+        width: 100%;
+        animation: fadeInDown .2s ease 0s 1 normal backwards;
+    }
 }

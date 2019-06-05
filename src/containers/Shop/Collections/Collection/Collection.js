@@ -1,14 +1,14 @@
 import React from 'react';
 
 import './Collection.css';
-import CollectionMenu from './CollectionMenu/CollectionMenu';
+import CollectionMenu from '../../../../components/Collection/CollectionMenu/CollectionMenu';
 import Product from '../../../../components/Product/Product';
 
 import TShirt from '../../../../assets/img/t-shirt1.jpg';
 
 const Collection = (props) => (
     <div className="shopCollection">
-        <h1 className="CollectionHeader">{props.location.state.collectionName}</h1>
+        <h2 className="CollectionHeader">{props.location.state.collectionName}</h2>
         <CollectionMenu />
         <div className="container">
             <div className="row">

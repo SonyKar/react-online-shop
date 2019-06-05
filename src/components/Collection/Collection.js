@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './Collection.css';
 
 const Collection = (props) => (
-    <div className="col-4">
+    <div className="col-xl-4 col-6 mt-2">
         <div className="Collection" style={{
             backgroundImage: `url(${props.image})`
         }}>

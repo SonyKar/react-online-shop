@@ -16,6 +16,8 @@ const Collections = () => (
                     <div className="col-12 mb-2">
                         <h2 className="text-center">ALL COLLECTIONS</h2>
                     </div>
+                </div>
+                <div className="d-flex align-items-stretch flex-wrap">
                     <Collection image={Collection1} name="URBAN T-SHIRTS" />
                     <Collection image={Collection2} name="SWEATSHIRTS" />
                     <Collection image={Collection3} name="SALE" />

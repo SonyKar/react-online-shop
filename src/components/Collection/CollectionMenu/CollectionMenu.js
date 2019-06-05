@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
 import './CollectionMenu.css';
-import Select from '../../../../../components/Select/Select';
+import Select from '../../Select/Select';
 
 const CollectionMenu = () => (
     <div className="CollectionMenu">
