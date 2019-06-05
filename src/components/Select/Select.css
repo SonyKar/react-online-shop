@@ -27,7 +27,7 @@
     position: absolute;
     top: 70px;
     left: -150px;
-    animation: fadeIn .5s ease 0s 1 normal backwards;
+    transition: all 0.5s ease;
 }
 .Select .popover button {
     border: none;
@@ -35,23 +35,15 @@
 .Select .popover button:active {
     background-color: #fff;
 }
-
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+.Select .popover.Open {
+    opacity: 1;
 }
-@keyframes fadeInDown {
-    0% {
-        bottom: -100%;
-    }
-    100% {
-        bottom: 0;
-    }
+.Select .popover.Close {
+    opacity: 0;
+}
+
+.Select .Backdrop {
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -61,10 +53,20 @@
     }
     .Select .popover {
         position: fixed;
+        z-index: 101;
         bottom: 0;
         left: 0;
         top: auto;
         width: 100%;
-        animation: fadeInDown .2s ease 0s 1 normal backwards;
+        transition-duration: 0.2s;
+    }
+    .Select .popover.Open {
+        transform: translateY(0);
+    }
+    .Select .popover.Close {
+        transform: translateY(100%);
+    }
+    .Select .Backdrop {
+        display: block;
     }
 }

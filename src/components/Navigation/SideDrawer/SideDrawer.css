@@ -1,18 +1,18 @@
 .SideDrawer {
     position: fixed;
     width: 280px;
-    /* margin: 70%; */
     height: 100%;
     left: 0;
     top: 0;
     z-index: 200;
-    background-color: #fff;
+    background-color: #232323;
     padding: 32px 16px;
     box-sizing: border-box;
     transition: transform 0.3s ease-out;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: #ccc;
 }
 .AuthSidebar {
     border-top: 1px solid #ccc;
@@ -21,11 +21,11 @@
     justify-content: space-between;
 }
 .AuthSidebar a {
-    color: #232323;
+    color: #ccc;
     letter-spacing: 2px;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 768px) {
     .SideDrawer {
         display: none;
     }
@@ -37,4 +37,12 @@
 
 .SideDrawer.Close {
     transform: translateX(-100%);
+}
+
+.SideDrawer a {
+    color: #ccc!important;
+}
+.SideDrawer a:active,
+.SideDrawer a:hover {
+    color: #848484!important;
 }

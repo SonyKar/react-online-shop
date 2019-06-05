@@ -30,5 +30,12 @@
     }
 }
 .CollapsableContent {
-    animation: collapseToggle 3s ease 0s 1 normal backwards;
+    transition: all 1s ease;
+    overflow: hidden;
+}
+.CollapsableContent.Open {
+    max-height: 500px;
+}
+.CollapsableContent.Close {
+    max-height: 0;
 }

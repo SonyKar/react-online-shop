@@ -16,21 +16,17 @@ class CollapsableBlock extends Component {
     }
 
     render() {
-        let description = null;
-        if (this.state.show) {
-            description = (
-                <div className="CollapsableContent">
-                    {this.props.children}
-                </div>
-            );
-        }
+        let descriptionClasses = "CollapsableContent";
+        descriptionClasses += this.state.show ? " Open" : " Close";
         return(
             <div className="CollapsableBlock" onClick={this.showToggleHandler}>
                 <div className="CollapsableHeader">
                     <h4>{this.props.collapsableHeader}</h4>
                     <span>{this.state.show ? '-' : "+"}</span>
                 </div>
-                {description}
+                <div className={descriptionClasses}>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

@@ -23,23 +23,6 @@ footer input:hover {
 footer input:focus {
     border-color: #232323;
 }
-footer button {
-    margin-top: 20px;
-    background-color: #232323;
-    border: 1px solid #232323;
-    padding: .8rem 1rem;
-    color: #fff;
-    letter-spacing: 2px;
-    font-size: .7rem;
-    font-weight: bold;
-    outline: none;
-    cursor: pointer;
-    transition: all .2s ease;
-}
-footer button:hover {
-    background-color: transparent;
-    color: #232323;
-}
 
 @media (max-width: 270px) {
     footer button {

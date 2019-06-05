@@ -21,7 +21,7 @@ const Footer = () => (
                     </p>
                     <form>
                         <input type="email" placeholder="Enter your email address" required/>
-                        <button>SUBSCRIBE</button>
+                        <button className="btn btn-dark mt-1">SUBSCRIBE</button>
                     </form>
                 </div>
                 <div className="col-4">
