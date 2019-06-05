@@ -1,0 +1,21 @@
+.ProductSettings h1 {
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+.ProductSettings .price {
+    font-size: 1.4rem;
+}
+.ProductSettings form p {
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+    color: #232323;
+}
+.ProductSettings form select {
+    width: 100%;
+    padding: 1rem;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-color: #ccc;
+}

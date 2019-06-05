@@ -5,13 +5,13 @@ import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 import './CollectionMenu.css';
 import Select from '../../Select/Select';
 
-const CollectionMenu = () => (
+const CollectionMenu = (props) => (
     <div className="CollectionMenu">
         <div className="row">
             <div className="whiteSpace">
                 <div className="productsSize">
-                    <FontAwesomeIcon icon={faCompress} className="selected" />
-                    <FontAwesomeIcon icon={faExpand} />
+                    <FontAwesomeIcon icon={faCompress} className={props.isExpand ? "" : "selected"} onClick={props.shrink} />
+                    <FontAwesomeIcon icon={faExpand} className={props.isExpand ? "selected": ""} onClick={props.expand} />
                 </div>
                 <Select />
             </div>

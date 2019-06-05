@@ -1,6 +1,6 @@
 .Product {
     border: 1px solid transparent;
-    transition: all .3s ease
+    transition: all .3s ease;
 }
 .Product:hover {
     border-color: #ccc;

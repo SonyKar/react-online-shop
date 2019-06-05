@@ -29,6 +29,9 @@ body {
 .mt-3 {
   margin-top: 3rem!important;
 }
+.mb-1 {
+  margin-bottom: 1rem!important;
+}
 .mb-2 {
   margin-bottom: 2rem!important;
 }
@@ -45,9 +48,6 @@ body {
   color: #232323;
 }
 
-.d-flex {
-  display: flex;
-} 
 .flex-column {
   flex-direction: column;
 } 
@@ -63,6 +63,16 @@ body {
 .flex-wrap {
   flex-wrap: wrap;
 }
+
+.w-100 {
+  width: 100%;
+}
+.d-block {
+  display: block!important;
+}
+.d-flex {
+  display: flex;
+} 
 
 
 
@@ -80,7 +90,7 @@ Grid
   }
 }
 @media (max-width: 768px) {
-  .col-2, .col-3, .col-4, .col-5, .col-6 {
+  .col-2, .col-3, .col-4, .col-5, .col-6, .col-7 {
     width: 100%!important;
   }
   .Feature {
@@ -108,7 +118,7 @@ Grid
 
 
 
-.col-2, .col-3, .col-4, .col-5, .col-6, .col-12, .col-xl-4 {
+.col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-12, .col-xl-4 {
   padding: 0 1rem;
   box-sizing: border-box;
 }
@@ -127,12 +137,12 @@ Grid
 .col-6 {
   width: 50%;
 }
+.col-7 {
+  width: 58.33%;
+}
 .col-12 {
   width: 100%;
 }
-/* .col-xl-3 {
-  width: 100%;
-} */
 
 
 
@@ -152,6 +162,8 @@ UI Elements
   transition: all .2s ease;
   box-sizing: border-box;
   letter-spacing: 1.5px;
+  cursor: pointer;
+  outline: none;
 }
 .btn-light {
   border: 2px solid #ccc;
