@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 
 import './Select.css';
@@ -33,7 +33,7 @@ class Select extends Component {
         return (
             <div className="Select">
                 <button onClick={this.popoverIsVisibleHandler}>
-                    SORT <FontAwesomeIcon icon={faAngleDown} />
+                    SORT <FontAwesomeIcon icon={this.state.popoverIsVisible ? faAngleUp : faAngleDown} />
                 </button>
                 {popover}
             </div>

@@ -15,7 +15,7 @@ const NavigationItems = (props) => {
                 <NavLink to="/" exact>HOME</NavLink>
             </li>
             <li>
-                <NavLink to="/collections" exact>SHOP</NavLink>
+                <NavLink to="/collections">SHOP</NavLink>
             </li>
             <li>
                 <NavLink to="/contact-us" exact>CONTACT US</NavLink>
