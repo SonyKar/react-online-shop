@@ -32,6 +32,9 @@ a {
 .mt-3 {
   margin-top: 3rem!important;
 }
+.mb-0 {
+  margin-bottom: 0!important;
+}
 .mb-1 {
   margin-bottom: 1rem!important;
 }
@@ -96,7 +99,7 @@ Grid
   }
 }
 @media (max-width: 768px) {
-  .col-2, .col-3, .col-4, .col-5, .col-6, .col-7 {
+  .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 {
     width: 100%!important;
   }
   .Feature {
@@ -132,7 +135,7 @@ Grid
 
 
 
-.col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-12, .col-xl-4 {
+.col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-12, .col-xl-4 {
   padding: 0 1rem;
   box-sizing: border-box;
 }
@@ -153,6 +156,9 @@ Grid
 }
 .col-7 {
   width: 58.33%;
+}
+.col-8 {
+  width: 66.66%;
 }
 .col-12 {
   width: 100%;

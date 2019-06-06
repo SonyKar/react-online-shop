@@ -4,7 +4,7 @@ import './QuantitySelection.css';
 
 class QuantitySelection extends Component {   
     state = {
-        quantity: 1
+        quantity: this.props.startingValue ? this.props.startingValue : 1
     };
 
     addQuantity = () => {
