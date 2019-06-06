@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './Collection.css';
 import CollectionMenu from '../../../../components/Collection/CollectionMenu/CollectionMenu';
 import Product from '../../../../components/Collection/Product/Product';
 import Footer from '../../../../components/Footer/Footer';
-
-import TShirt from '../../../../assets/img/t-shirt1.jpg';
 
 class Collection extends Component {
     state = {
@@ -31,9 +30,20 @@ class Collection extends Component {
                     <CollectionMenu expand={this.expandProductsHandler} shrink={this.shrinkProductsHandler} isExpand={this.state.expand} />
                     <div className="container">
                         <div className="row">
-                            <div className={productClasses}>
-                                <Product id="1" image={TShirt} name="Black T-Shirt" price="25.99" />
-                            </div>
+                            {
+                                this.props.products.map( product => {
+                                    return (
+                                        <div className={productClasses} key={product.id}>
+                                            <Product 
+                                                id={product.id}
+                                                image={require('../../../../assets/img/t-shirt1.jpg')}
+                                                name={product.name}
+                                                price={product.price}
+                                            />
+                                        </div>  
+                                    );
+                                } )
+                            }
                         </div>
                     </div>
                 </div>
@@ -43,4 +53,10 @@ class Collection extends Component {
     }
 }
 
-export default Collection;
+const mapStateToProps = state => {
+    return {
+        products: state.shop.products
+    };
+};
+
+export default connect(mapStateToProps)(Collection);
