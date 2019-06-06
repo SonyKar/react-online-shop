@@ -5,6 +5,7 @@ import './Collection.css';
 import CollectionMenu from '../../../../components/Collection/CollectionMenu/CollectionMenu';
 import Product from '../../../../components/Collection/Product/Product';
 import Footer from '../../../../components/Footer/Footer';
+import * as actions from '../../../../store/actions/index';
 
 class Collection extends Component {
     state = {
@@ -36,9 +37,10 @@ class Collection extends Component {
                                         <div className={productClasses} key={product.id}>
                                             <Product 
                                                 id={product.id}
-                                                image={require('../../../../assets/img/t-shirt1.jpg')}
+                                                image={require('../../../../assets/img/' + product.image)}
                                                 name={product.name}
                                                 price={product.price}
+                                                clicked={() => this.props.onSelectedProduct(product.id)}
                                             />
                                         </div>  
                                     );
@@ -59,4 +61,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Collection);
+const mapDispatchToProps = dispatch => {
+    return {
+        onSelectedProduct: (id) => dispatch(actions.selectedProduct(id))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Collection);

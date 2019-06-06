@@ -6,8 +6,8 @@ import CollapsableBlock from '../../../CollapsableBlock/CollapsableBlock';
 
 const ProductSettings = (props) => (
     <div className="ProductSettings">
-        <h1>Black T-Shirt</h1>
-        <p className="price">25.99$</p>
+        <h1>{props.name}</h1>
+        <p className="price">{props.price}</p>
         <form>
             <p>Size: </p>
             <select>
@@ -21,10 +21,7 @@ const ProductSettings = (props) => (
             <QuantitySelection />
             <button type="button" className="btn btn-dark w-100 mt-2 mb-2">ADD TO CART</button>
             <CollapsableBlock collapsableHeader="Description">
-                <h2>I Love Hue</h2>
-                <p>Some Testing Text...</p>
-                <h2>I Love Hue</h2>
-                <p>Some Testing Text...</p>
+                {props.desc}
             </CollapsableBlock>
         </form>
     </div>

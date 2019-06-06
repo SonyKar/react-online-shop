@@ -1,0 +1,3 @@
+export {
+    selectedProduct
+} from './shop';
