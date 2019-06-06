@@ -25,10 +25,12 @@ class Product extends Component {
                                     <img src={require('../../../assets/img/' + this.props.product.image)} alt="" className="w-100" />
                                 </div>
                                 <div className="col-5">
-                                    <ProductSettings 
-                                        name={this.props.product.name} 
+                                    <ProductSettings
+                                        id={this.props.product.id}
+                                        name={this.props.product.name}
                                         price={this.props.product.price}
                                         desc={this.props.product.description}
+                                        image={this.props.product.image}
                                     />
                                 </div>
                             </div>

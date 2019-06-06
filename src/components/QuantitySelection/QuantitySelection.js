@@ -4,35 +4,49 @@ import './QuantitySelection.css';
 
 class QuantitySelection extends Component {   
     state = {
-        quantity: this.props.startingValue ? this.props.startingValue : 1
+        quantity: 1,
+        startingValue: 1
     };
+
+    componentWillUpdate(nextProps) {
+        if (nextProps.startingValue !== this.state.startingValue && nextProps.startingValue !== undefined) {
+            this.setState({
+                quantity: nextProps.startingValue,
+                startingValue: nextProps.startingValue
+            });
+        }
+    }
 
     addQuantity = () => {
         this.setState((prevState) => {
+            this.props.updateState(prevState.quantity + 1);
             return {
                 quantity: prevState.quantity + 1
             }
         });
     };
-
+    
     substractQuantity = () => {
         if (this.state.quantity > 1) {
             this.setState((prevState) => {
+                this.props.updateState(prevState.quantity - 1);
                 return {
                     quantity: prevState.quantity - 1
                 }
             });
         }
     };
-
+    
     onKeyPressHandler = (event) => {
         if (event.charCode < 48 || event.charCode > 57) return false;      
     }
-
+    
     onChangeHandler = (event) => {
-        if (+event.target.value > 0) this.setState({quantity: +event.target.value})
+        if (+event.target.value > 0) {
+            this.setState({quantity: +event.target.value})
+        }
     }
-
+    
     render() {
         return (
             <div className="QuantitySelection">

@@ -1,30 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './ProductSettings.css';
 import QuantitySelection from '../../../QuantitySelection/QuantitySelection';
 import CollapsableBlock from '../../../CollapsableBlock/CollapsableBlock';
+import * as actions from '../../../../store/actions/index';
 
-const ProductSettings = (props) => (
-    <div className="ProductSettings">
-        <h1>{props.name}</h1>
-        <p className="price">{props.price}</p>
-        <form>
-            <p>Size: </p>
-            <select>
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-            </select>
-            <p>Quantity:</p>
-            <QuantitySelection />
-            <button type="button" className="btn btn-dark w-100 mt-2 mb-2">ADD TO CART</button>
-            <CollapsableBlock collapsableHeader="Description">
-                {props.desc}
-            </CollapsableBlock>
-        </form>
-    </div>
-);
+class ProductSettings extends Component {
+    state = {
+        size: 'XS',
+        qty: 1
+    }
 
-export default ProductSettings;
+    setSizeHandler = (event) => {
+        this.setState({
+            size: event.target.value 
+        });
+    }
+
+    setQuantityHandler = (newValue) => {
+        this.setState({
+            qty: newValue
+        })
+    }
+
+    render() {
+        return (
+            <div className="ProductSettings">
+                <h1>{this.props.name}</h1>
+                <p className="price">{this.props.price}</p>
+                <form>
+                    <p>Size: </p>
+                    <select onChange={(event) => this.setSizeHandler(event)}>
+                        <option>XS</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                    <p>Quantity:</p>
+                    <QuantitySelection updateState={this.setQuantityHandler} />
+                    <button type="button" className="btn btn-dark w-100 mt-2 mb-2" onClick={() => this.props.onAddToCart(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image)} >ADD TO CART</button>
+                    <CollapsableBlock collapsableHeader="Description">
+                        {this.props.desc}
+                    </CollapsableBlock>
+                </form>
+            </div>
+        );
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddToCart: (id, name, price, size, qty, image) => dispatch(actions.addToCart(id, name, price, size, qty, image))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(ProductSettings);
