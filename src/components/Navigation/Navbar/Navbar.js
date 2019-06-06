@@ -24,7 +24,7 @@ const Navbar = (props) => (
                     </div>
                 </nav>
                 <div className="shopping-cart">
-                    <FontAwesomeIcon icon={faShoppingCart} style={{ color: '#ccc' }}/>
+                    <FontAwesomeIcon icon={faShoppingCart} style={{ color: '#ccc' }} onClick={props.shoppingCartToggle}/>
                 </div>
             </div>
         </div>

@@ -1,19 +1,53 @@
 .SideDrawer {
     position: fixed;
-    width: 280px;
+    width: 400px;
     height: 100%;
-    left: 0;
-    top: 0;
     z-index: 200;
-    background-color: #232323;
     padding: 32px 16px;
     box-sizing: border-box;
     transition: transform 0.3s ease-out;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+@media (max-width: 768px) {
+    .SideDrawer {
+        width: 80%;
+    }
+}
+
+.SideDrawer.Light {
+    background-color: #fff;
+    color: #232323;
+}
+.SideDrawer.Dark {
+    background-color: #232323;
     color: #ccc;
 }
+
+.SideDrawer.Right {
+    top: 0;
+    left: 100%;
+}
+.SideDrawer.Open.Right {
+    transform: translateX(-100%);
+}
+.SideDrawer.Close.Right {
+    transform: translateX(0);
+}
+
+.SideDrawer.Left {
+    top: 0;
+    left: 0;
+}
+.SideDrawer.Open.Left {
+    transform: translateX(0);
+}
+.SideDrawer.Close.Left {
+    transform: translateX(-100%);
+}
+
+/* Menu Mobile */
 .AuthSidebar {
     border-top: 1px solid #ccc;
     padding: 1rem 0;
@@ -24,25 +58,26 @@
     color: #ccc;
     letter-spacing: 2px;
 }
-
-@media (min-width: 768px) {
-    .SideDrawer {
-        display: none;
-    }
-}
-
-.SideDrawer.Open {
-    transform: translateX(0);
-}
-
-.SideDrawer.Close {
-    transform: translateX(-100%);
-}
-
 .SideDrawer a {
     color: #ccc!important;
 }
 .SideDrawer a:active,
 .SideDrawer a:hover {
     color: #848484!important;
+}
+
+/* Shopping Cart */
+.sideDrawerHeader {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1.5rem;
+    color: #232323;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.noProducts {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 }

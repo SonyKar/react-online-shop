@@ -16,19 +16,6 @@
     letter-spacing: 1px;
 }
 
-@keyframes collapseToggle {
-    0% {
-        opacity: 0;
-        max-height: 0;
-    }
-    40% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 1;
-        max-height: 3000px;
-    }
-}
 .CollapsableContent {
     transition: all 1s ease;
     overflow: hidden;
