@@ -57,12 +57,7 @@ const addToCart = (state, action) => {
 const removeFromCart = (state, action) => {
     return {
         ...state,
-        cart: state.cart.filter(item => {
-            if (item.id !== action.id || item.size !== action.size) {
-                return false;
-            }
-            return true;
-        })
+        cart: state.cart.filter(item => item.id + item.size !== action.id + action.size)
     }
 }
 
