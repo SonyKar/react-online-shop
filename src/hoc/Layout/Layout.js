@@ -46,6 +46,9 @@ class Layout extends Component {
         if (this.props.cart.length !== 0) {
             shoppingCart = (
                 this.props.cart.map(product => {
+                    const shoppingCartQuantityChangeHandler = (qty) => {
+                        this.props.onUpdateItem(product.id, product.size, qty);
+                    }
                     return (
                         <div className="CartElement" key={product.id + product.size}>
                             <div className="row align-items-center">
@@ -57,7 +60,7 @@ class Layout extends Component {
                                     <p>{product.size}</p>
                                     <span>{product.price} $</span>
                                     <div className="cartProductSettings">
-                                        <QuantitySelection startingValue={product.qty} />
+                                        <QuantitySelection startingValue={product.qty} updateState={shoppingCartQuantityChangeHandler} />
                                         <button type="button" className="removeButton" onClick={() => {this.props.onRemoveItemFromCart(product.id, product.size)}}>REMOVE</button>
                                     </div>
                                 </div>
@@ -122,7 +125,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRemoveItemFromCart: (id, size) => dispatch(actions.removeFromCart(id, size))
+        onRemoveItemFromCart: (id, size) => dispatch(actions.removeFromCart(id, size)),
+        onUpdateItem: (id, size, qty) => dispatch(actions.updateCart(id, size, qty))
     };
 };
 

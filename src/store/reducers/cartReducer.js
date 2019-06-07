@@ -59,9 +59,27 @@ const removeFromCart = (state, action) => {
         ...state,
         cart: state.cart.filter(item => {
             if (item.id !== action.id || item.size !== action.size) {
-                return item;
+                return false;
             }
+            return true;
         })
+    }
+}
+
+const updateCart = (state, action) => {
+    const oldProducts = state.cart.slice();
+    let newProducts = oldProducts.map(item => {
+        if (item.id === action.id && item.size === action.size) {
+            return {
+                ...item,
+                qty: action.qty
+            }
+        }
+        return item;
+    })
+    return {
+        ...state,
+        cart: newProducts
     }
 }
 
@@ -71,6 +89,8 @@ const reducer = (state = initialState, action) => {
             return addToCart(state, action);
         case actionTypes.REMOVE_FROM_CART:
             return removeFromCart(state, action);
+        case actionTypes.UPDATE_CART:
+            return updateCart(state, action);
         default: 
             return state; 
     }

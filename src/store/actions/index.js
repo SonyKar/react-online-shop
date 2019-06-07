@@ -3,5 +3,6 @@ export {
 } from './shop';
 export {
     addToCart,
-    removeFromCart
+    removeFromCart,
+    updateCart
 } from './cart';

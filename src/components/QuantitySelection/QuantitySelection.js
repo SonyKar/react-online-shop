@@ -44,6 +44,7 @@ class QuantitySelection extends Component {
     onChangeHandler = (event) => {
         if (+event.target.value > 0) {
             this.setState({quantity: +event.target.value})
+            this.props.updateState(+event.target.value);
         }
     }
     

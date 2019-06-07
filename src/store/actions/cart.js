@@ -19,3 +19,12 @@ export const removeFromCart = (id, size) => {
         size: size
     }
 }
+
+export const updateCart = (id, size, qty) => {
+    return {
+        type: actionTypes.UPDATE_CART,
+        id: id,
+        size: size,
+        qty: qty
+    }
+}
