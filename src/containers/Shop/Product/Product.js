@@ -9,13 +9,13 @@ import * as actions from '../../../store/actions/index';
 class Product extends Component {
     componentDidMount() {
         if (this.props.product === null) {
-            this.props.onSelectedProduct(this.props.match.params.id);
+            this.props.onSelectedProduct(+this.props.match.params.id);
         }
     }
 
     render() {
         let Product = (<p>Loading...</p>);
-        if (!this.props.loading) {
+        if (this.props.product) {
             Product = (
                 <React.Fragment>
                     <div className="ProductPage">
@@ -31,6 +31,7 @@ class Product extends Component {
                                         price={this.props.product.price}
                                         desc={this.props.product.description}
                                         image={this.props.product.image}
+                                        opencart={this.props.opencart}
                                     />
                                 </div>
                             </div>

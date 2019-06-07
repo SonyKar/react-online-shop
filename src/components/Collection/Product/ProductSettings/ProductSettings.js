@@ -40,7 +40,9 @@ class ProductSettings extends Component {
                     </select>
                     <p>Quantity:</p>
                     <QuantitySelection updateState={this.setQuantityHandler} />
-                    <button type="button" className="btn btn-dark w-100 mt-2 mb-2" onClick={() => this.props.onAddToCart(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image)} >ADD TO CART</button>
+                    <button type="button" className="btn btn-dark w-100 mt-2 mb-2" onClick={() => {
+                        this.props.onAddToCart(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image);
+                    }} >ADD TO CART</button>
                     <CollapsableBlock collapsableHeader="Description">
                         {this.props.desc}
                     </CollapsableBlock>

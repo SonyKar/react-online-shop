@@ -109,9 +109,9 @@ class Layout extends Component {
                         {shoppingCart}
                     </div>
                 </SideDrawer>
-                <main style={{paddingTop: '60px'}}>
-                    {this.props.children}
-                </main>
+                    <main style={{paddingTop: '60px'}}>
+                        {this.props.children}
+                    </main>
             </React.Fragment>
         );
     }

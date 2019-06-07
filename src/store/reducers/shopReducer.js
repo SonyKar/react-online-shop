@@ -44,7 +44,7 @@ const initialState = {
 
 const selectedProduct = (state, action) => {
     let selectedProduct = null;
-    state.products.map( product => {
+    state.products.slice().map( product => {
         if (product.id === action.id) {
             selectedProduct = product;
             return false;
