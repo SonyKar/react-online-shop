@@ -24,3 +24,27 @@ export const selectedProduct = (id) => {
         id: id
     };
 };
+
+export const sortByPriceInc = () => {
+    return {
+        type: actionTypes.SORT_BY_PRICE_INC
+    }
+}
+
+export const sortByPriceDec = () => {
+    return {
+        type: actionTypes.SORT_BY_PRICE_DEC
+    }
+}
+
+export const sortByNameInc = () => {
+    return {
+        type: actionTypes.SORT_BY_NAME_INC
+    }
+}
+
+export const sortByNameDec = () => {
+    return {
+        type: actionTypes.SORT_BY_NAME_DEC
+    }
+}

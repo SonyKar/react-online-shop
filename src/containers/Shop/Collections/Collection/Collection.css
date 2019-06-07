@@ -1,5 +1,6 @@
 .shopCollection {
     padding-bottom: 3rem;
+    overflow: hidden;
 }
 .shopCollection h2.CollectionHeader {
     text-align: center;

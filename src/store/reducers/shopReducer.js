@@ -42,6 +42,77 @@ const initialState = {
     loading: false
 }
 
+const selectedProduct = (state, action) => {
+    let selectedProduct = null;
+    state.products.map( product => {
+        if (product.id === action.id) {
+            selectedProduct = product;
+            return false;
+        }
+        return false;
+    });
+    return {
+        ...state,
+        product: selectedProduct
+    }
+}
+
+const sortByPriceInc = (state, action) => {
+    return {
+        ...state,
+        products: state.products.slice().sort( 
+            function(a, b) { 
+                return a.price - b.price;
+            }
+        )
+    }
+}
+
+const sortByPriceDec = (state, action) => {
+    return {
+        ...state,
+        products: state.products.slice().sort( 
+            function(a, b) { 
+                return b.price - a.price;
+            }
+        )
+    }
+}
+
+const sortByNameInc = (state, action) => {
+    return {
+        ...state,
+        products: state.products.slice().sort( 
+            function(a, b) {
+                if (a.name > b.name) {
+                  return 1;
+                }
+                if (a.name < b.name) {
+                  return -1;
+                }
+                return 0;
+            }
+        )
+    }
+}
+
+const sortByNameDec = (state, action) => {
+    return {
+        ...state,
+        products: state.products.slice().sort( 
+            function(a, b) {
+                if (b.name > a.name) {
+                  return 1;
+                }
+                if (b.name < a.name) {
+                  return -1;
+                }
+                return 0;
+            }
+        )
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_PRODUCTS:
@@ -51,18 +122,15 @@ const reducer = (state = initialState, action) => {
         case actionTypes.REMOVE_PRODUCT:
             return {...state}
         case actionTypes.SELECTED_PRODUCT:
-            let selectedProduct = null;
-            state.products.map( product => {
-                if (product.id === action.id) {
-                    selectedProduct = product;
-                    return false;
-                }
-                return false;
-            });
-            return {
-                ...state,
-                product: selectedProduct
-            }
+            return selectedProduct(state, action);
+        case actionTypes.SORT_BY_PRICE_INC:
+            return sortByPriceInc(state, action);
+        case actionTypes.SORT_BY_PRICE_DEC:
+            return sortByPriceDec(state, action);
+        case actionTypes.SORT_BY_NAME_INC:
+            return sortByNameInc(state, action);
+        case actionTypes.SORT_BY_NAME_DEC:
+            return sortByNameDec(state, action);
         default: 
             return state; 
     }

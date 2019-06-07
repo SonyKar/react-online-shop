@@ -40,6 +40,7 @@
 }
 .Select .popover.Close {
     opacity: 0;
+    left: 200%;
 }
 
 .Select .Backdrop {
@@ -58,13 +59,14 @@
         left: 0;
         top: auto;
         width: 100%;
-        transition-duration: 0.2s;
+        transition-duration: 0.3s;
     }
     .Select .popover.Open {
         transform: translateY(0);
     }
     .Select .popover.Close {
         transform: translateY(100%);
+        left: 0;
     }
     .Select .Backdrop {
         display: block;

@@ -1,5 +1,9 @@
 export {
-    selectedProduct
+    selectedProduct,
+    sortByPriceInc,
+    sortByPriceDec,
+    sortByNameInc,
+    sortByNameDec
 } from './shop';
 export {
     addToCart,
