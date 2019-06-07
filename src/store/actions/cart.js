@@ -11,3 +11,11 @@ export const addToCart = (id, name, price, size, qty, image) => {
         qty: qty
     };
 };
+
+export const removeFromCart = (id, size) => {
+    return {
+        type: actionTypes.REMOVE_FROM_CART,
+        id: id,
+        size: size
+    }
+}

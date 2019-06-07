@@ -2,5 +2,6 @@ export {
     selectedProduct
 } from './shop';
 export {
-    addToCart
+    addToCart,
+    removeFromCart
 } from './cart';

@@ -7,6 +7,7 @@ import NavigationItems from '../../components/Navigation/NavigationItems/Navigat
 import Navbar from '../../components/Navigation/Navbar/Navbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import QuantitySelection from '../../components/QuantitySelection/QuantitySelection';
+import * as actions from '../../store/actions/index';
 
 class Layout extends Component {
     state = { 
@@ -42,9 +43,9 @@ class Layout extends Component {
                 <p>There are no any products yet!</p>
             </div>
         );
-        if (this.props.products) {
+        if (this.props.cart.length !== 0) {
             shoppingCart = (
-                this.props.products.map(product => {
+                this.props.cart.map(product => {
                     return (
                         <div className="CartElement" key={product.id + product.size}>
                             <div className="row align-items-center">
@@ -57,7 +58,7 @@ class Layout extends Component {
                                     <span>{product.price} $</span>
                                     <div className="cartProductSettings">
                                         <QuantitySelection startingValue={product.qty} />
-                                        <button type="button" className="removeButton">REMOVE</button>
+                                        <button type="button" className="removeButton" onClick={() => {this.props.onRemoveItemFromCart(product.id, product.size)}}>REMOVE</button>
                                     </div>
                                 </div>
                             </div>
@@ -115,8 +116,14 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.cart.products
+        cart: state.cart.cart
     };
 };
 
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = dispatch => {
+    return {
+        onRemoveItemFromCart: (id, size) => dispatch(actions.removeFromCart(id, size))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
