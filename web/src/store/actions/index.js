@@ -1,4 +1,7 @@
 export {
+    fetchCollections
+} from './collection';
+export {
     selectedProduct,
     sortByPriceInc,
     sortByPriceDec,

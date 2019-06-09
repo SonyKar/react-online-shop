@@ -1,31 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import "./Collections.css";
 import Collection from '../../../components/Collection/Collection';
 import Footer from '../../../components/Footer/Footer';
+import * as actions from '../../../store/actions/index';
 
-import Collection1 from '../../../assets/img/collection1.jpg';
-import Collection2 from '../../../assets/img/collection2.jpg';
-import Collection3 from '../../../assets/img/collection3.jpg';
+class Collections extends Component {
+    componentDidMount() {
+        if (this.props.collections.length === 0) {
+            this.props.onFetchCollections();
+        }
+    }
 
-const Collections = () => (
-    <React.Fragment>
-        <div className="Collections">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 mb-2">
-                        <h2 className="text-center">ALL COLLECTIONS</h2>
+    render() {
+        let collections = <p>loading...</p>;
+        if (!this.props.loading) {
+            collections = this.props.collections.map(collection => (
+                <Collection 
+                    key={collection.id}
+                    name={collection.name}
+                    image={require('../../../assets/img/' + collection.image)}
+                />
+            ));
+        }
+
+        return (
+            <React.Fragment>
+                <div className="Collections">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 mb-2">
+                                <h2 className="text-center">ALL COLLECTIONS</h2>
+                            </div>
+                        </div>
+                        <div className="d-flex align-items-stretch flex-wrap">
+                            {/* <Collection image={Collection1} name="URBAN T-SHIRTS" />
+                            <Collection image={Collection2} name="SWEATSHIRTS" />
+                            <Collection image={Collection3} name="SALE" /> */}
+                            {collections}
+                        </div>
                     </div>
                 </div>
-                <div className="d-flex align-items-stretch flex-wrap">
-                    <Collection image={Collection1} name="URBAN T-SHIRTS" />
-                    <Collection image={Collection2} name="SWEATSHIRTS" />
-                    <Collection image={Collection3} name="SALE" />
-                </div>
-            </div>
-        </div>
-        <Footer />
-    </React.Fragment>
-);
+                <Footer />
+            </React.Fragment>
+        );
+    }
+}
 
-export default Collections;
+const mapStateToProps = state => {
+    return {
+        collections: state.collection.collections,
+        loading: state.collection.loading
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchCollections: () => dispatch(actions.fetchCollections())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Collections);
