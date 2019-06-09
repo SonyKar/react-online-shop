@@ -20,6 +20,7 @@ body {
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  margin: 5rem 0;
 }
 a {
   text-decoration: none;

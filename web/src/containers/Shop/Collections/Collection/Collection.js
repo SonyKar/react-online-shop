@@ -53,7 +53,7 @@ class Collection extends Component {
         return (
             <React.Fragment>
                 <div className="shopCollection">
-                    <h2 className="CollectionHeader">{this.props.location.state.collectionName}</h2>
+                    <h2 className="CollectionHeader">{this.props.match.params.collectionName}</h2>
                     <CollectionMenu expand={this.expandProductsHandler} shrink={this.shrinkProductsHandler} isExpand={this.state.expand} />
                     <div className="container">
                         <div className="row">

@@ -3,6 +3,7 @@ export {
 } from './collection';
 export {
     fetchProducts,
+    fetchProduct,
     selectedProduct,
     emptyProducts,
     sortByPriceInc,

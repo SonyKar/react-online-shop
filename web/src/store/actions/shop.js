@@ -45,6 +45,43 @@ export const fetchProducts = (collectionId) => {
     };
 };
 
+export const fetchProductStart = () => {
+    return {
+        type: actionTypes.FETCH_PRODUCT_START
+    };
+};
+
+export const fetchProductSuccess = (product) => {
+    return {
+        type: actionTypes.FETCH_PRODUCT_SUCCESS,
+        product: product
+    };
+};
+
+export const fetchProductFailed = (error) => {
+    return {
+        type: actionTypes.FETCH_PRODUCT_FAILED,
+        error: error
+    };
+};
+
+export const fetchProduct = (productId, collectionId) => {
+    return dispatch => {
+        dispatch(fetchProductStart());
+        axios.get('/response/products/product.php?collection=' + collectionId + '&id=' + productId)
+            .then(res => {
+                if (res.data.error !== undefined) {
+                    dispatch(fetchProductFailed(res.data.error));
+                } else {
+                    dispatch(fetchProductSuccess(res.data));
+                }
+            })
+            .catch(error => {
+                dispatch(fetchProductFailed(error));
+            });
+    };
+};
+
 export const addProduct = () => {
     return {
         type: actionTypes.ADD_PRODUCT

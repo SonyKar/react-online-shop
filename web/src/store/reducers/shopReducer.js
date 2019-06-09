@@ -30,6 +30,29 @@ const fetchProductsFailed = (state, action) => {
     };
 };
 
+const fetchProductStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const fetchProductSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        product: action.product
+    };
+};
+
+const fetchProductFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        error: action.error
+    };
+};
+
 const selectedProduct = (state, action) => {
     let selectedProduct = null;
     state.products.slice().map( product => {
@@ -119,6 +142,12 @@ const reducer = (state = initialState, action) => {
             return fetchProductsSuccess(state, action);
         case actionTypes.FETCH_PRODUCTS_FAILED:
             return fetchProductsFailed(state, action);
+        case actionTypes.FETCH_PRODUCT_START:
+            return fetchProductStart(state, action);
+        case actionTypes.FETCH_PRODUCT_SUCCESS:
+            return fetchProductSuccess(state, action);
+        case actionTypes.FETCH_PRODUCT_FAILED:
+            return fetchProductFailed(state, action);
         case actionTypes.ADD_PRODUCT:
             return {...state}
         case actionTypes.REMOVE_PRODUCT:
