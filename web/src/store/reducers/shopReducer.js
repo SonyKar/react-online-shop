@@ -1,46 +1,34 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    products: [
-        {
-            id: 1,
-            name: "Black T-Shirt",
-            price: 25.99,
-            image: 't-shirt1.jpg',
-            description: "Testing Description"
-        },
-        {
-            id: 2,
-            name: "White T-Shirt",
-            price: 16.85,
-            image: 't-shirt1.jpg',
-            description: "Testing Description2"
-        },
-        {
-            id: 3,
-            name: "Red T-Shirt",
-            price: 20.25,
-            image: 't-shirt1.jpg',
-            description: "Testing Description3"
-        },
-        {
-            id: 4,
-            name: "Blue T-Shirt",
-            price: 40.56,
-            image: 't-shirt1.jpg',
-            description: "Testing Description4"
-        },
-        {
-            id: 5,
-            name: "Purple T-Shirt",
-            price: 9.99,
-            image: 't-shirt1.jpg',
-            description: "Testing Description5"
-        }
-    ],
+    products: [],
     product: null,
-    loading: false
+    loading: false,
+    error: ''
 }
+
+const fetchProductsStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const fetchProductsSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        products: action.products
+    };
+};
+
+const fetchProductsFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        error: action.error
+    };
+};
 
 const selectedProduct = (state, action) => {
     let selectedProduct = null;
@@ -54,6 +42,16 @@ const selectedProduct = (state, action) => {
     return {
         ...state,
         product: selectedProduct
+    }
+}
+
+const emptyProducts = (state, action) => {
+    return {
+        ...state,
+        products: [],
+        product: null,
+        loading: false,
+        error: ''
     }
 }
 
@@ -115,14 +113,20 @@ const sortByNameDec = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SET_PRODUCTS:
-            return {...state}
+        case actionTypes.FETCH_PRODUCTS_START:
+            return fetchProductsStart(state, action);
+        case actionTypes.FETCH_PRODUCTS_SUCCESS:
+            return fetchProductsSuccess(state, action);
+        case actionTypes.FETCH_PRODUCTS_FAILED:
+            return fetchProductsFailed(state, action);
         case actionTypes.ADD_PRODUCT:
             return {...state}
         case actionTypes.REMOVE_PRODUCT:
             return {...state}
         case actionTypes.SELECTED_PRODUCT:
             return selectedProduct(state, action);
+        case actionTypes.EMPTY_PRODUCTS:
+            return emptyProducts(state, action);
         case actionTypes.SORT_BY_PRICE_INC:
             return sortByPriceInc(state, action);
         case actionTypes.SORT_BY_PRICE_DEC:

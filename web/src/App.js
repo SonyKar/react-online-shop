@@ -14,8 +14,8 @@ function App() {
       <div className="App">
         <Layout>
           <Switch>
-            <Route path="/collections/:collectionName/:id" component={Product} />
-            <Route path="/collections/:collectionName" component={Collection} />
+            <Route path="/collections/:collectionName/:collectionId/:id" component={Product} />
+            <Route path="/collections/:collectionName/:collectionId" component={Collection} />
             <Route path="/collections" component={Collections} />
             <Route path="/" exact component={Home} />
           </Switch>

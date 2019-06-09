@@ -77,13 +77,6 @@
     letter-spacing: 2px;
     font-weight: bold;
 }
-.noProducts {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-}
 .CartElement h5 a {
     color: #232323!important;
     letter-spacing: 2px;

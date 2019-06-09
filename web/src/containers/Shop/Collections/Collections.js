@@ -9,6 +9,7 @@ import * as actions from '../../../store/actions/index';
 
 class Collections extends Component {
     componentDidMount() {
+        this.props.onEmptyProducts();
         if (this.props.collections.length === 0) {
             this.props.onFetchCollections();
         }
@@ -22,6 +23,7 @@ class Collections extends Component {
                     key={collection.id}
                     name={collection.name}
                     image={require('../../../assets/img/' + collection.image)}
+                    collectionId={collection.id}
                 />
             ));
         }
@@ -36,9 +38,6 @@ class Collections extends Component {
                             </div>
                         </div>
                         <div className="d-flex align-items-stretch flex-wrap">
-                            {/* <Collection image={Collection1} name="URBAN T-SHIRTS" />
-                            <Collection image={Collection2} name="SWEATSHIRTS" />
-                            <Collection image={Collection3} name="SALE" /> */}
                             {collections}
                         </div>
                     </div>
@@ -58,7 +57,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchCollections: () => dispatch(actions.fetchCollections())
+        onFetchCollections: () => dispatch(actions.fetchCollections()),
+        onEmptyProducts: () => dispatch(actions.emptyProducts())
     };
 };
 

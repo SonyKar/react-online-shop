@@ -2,7 +2,9 @@ export {
     fetchCollections
 } from './collection';
 export {
+    fetchProducts,
     selectedProduct,
+    emptyProducts,
     sortByPriceInc,
     sortByPriceDec,
     sortByNameInc,
