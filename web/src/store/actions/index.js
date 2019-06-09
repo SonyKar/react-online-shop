@@ -14,7 +14,9 @@ export {
 export {
     addToCart,
     removeFromCart,
-    updateCart
+    updateCart,
+    fetchCart,
+    emptyCart
 } from './cart';
 
 export {

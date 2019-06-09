@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Logo from '../../components/Logo/Logo';
+import Spinner from '../../components/Spinner/Spinner';
 import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import Navbar from '../../components/Navigation/Navbar/Navbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
@@ -11,8 +12,15 @@ import * as actions from '../../store/actions/index';
 
 class Layout extends Component {
     state = { 
-        showSideMenu: false ,
+        showSideMenu: false,
         showShoppingCart: false
+    }
+
+    componentWillUpdate() {
+        if (this.props.login.length !== 0 && this.props.cart.length === 0 && !this.props.loading) {
+            console.log(this.props.login);
+            this.props.onFetchCart(this.props.login);
+        }
     }
 
     sideDrawerClosedHandler = () => {
@@ -38,12 +46,8 @@ class Layout extends Component {
     }
 
     render() {
-        let shoppingCart = (
-            <div className="noProducts">
-                <p>There are no any products yet!</p>
-            </div>
-        );
-        if (this.props.cart.length !== 0) {
+        let shoppingCart = <Spinner />;
+        if (!this.props.loading) {
             shoppingCart = (
                 this.props.cart.map(product => {
                     const shoppingCartQuantityChangeHandler = (qty) => {
@@ -68,6 +72,13 @@ class Layout extends Component {
                         </div>
                     );
                 })
+            );
+        }
+        if (this.props.cart.length === 0 && !this.props.loading) {
+            shoppingCart = (
+                <div className="noProducts" style={{height: 'auto'}}>
+                    <p>There are no any products yet!</p>
+                </div>
             );
         }
 
@@ -119,14 +130,17 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-        cart: state.cart.cart
+        cart: state.cart.cart,
+        loading: state.cart.loading,
+        login: state.auth.person.login
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onRemoveItemFromCart: (id, size) => dispatch(actions.removeFromCart(id, size)),
-        onUpdateItem: (id, size, qty) => dispatch(actions.updateCart(id, size, qty))
+        onUpdateItem: (id, size, qty) => dispatch(actions.updateCart(id, size, qty)),
+        onFetchCart: (login) => dispatch(actions.fetchCart(login))
     };
 };
 

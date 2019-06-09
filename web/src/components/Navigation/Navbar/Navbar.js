@@ -57,8 +57,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogIn: () => dispatch(actions.logIn()),
-        onLogOut: () => dispatch(actions.logOut())
+        onLogIn: () => {
+            dispatch(actions.logIn());
+            dispatch(actions.emptyCart());
+        },
+        onLogOut: () => {
+            dispatch(actions.logOut());
+            dispatch(actions.emptyCart());
+        }
     };
 };
 
