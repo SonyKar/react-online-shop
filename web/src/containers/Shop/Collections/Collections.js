@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import "./Collections.css";
+import Spinner from '../../../components/Spinner/Spinner';
 import Collection from '../../../components/Collection/Collection';
 import Footer from '../../../components/Footer/Footer';
 import * as actions from '../../../store/actions/index';
@@ -14,7 +15,7 @@ class Collections extends Component {
     }
 
     render() {
-        let collections = <p>loading...</p>;
+        let collections = <Spinner />;
         if (!this.props.loading) {
             collections = this.props.collections.map(collection => (
                 <Collection 
