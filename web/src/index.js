@@ -10,11 +10,13 @@ import App from './App';
 import cartReducer from './store/reducers/cartReducer';
 import shopReducer from './store/reducers/shopReducer';
 import collectionReducer from './store/reducers/collectionReducer';
+import authReducer from './store/reducers/authReducer';
 
 const rootReducer = combineReducers({
     cart: cartReducer,
     shop: shopReducer,
-    collection: collectionReducer
+    collection: collectionReducer,
+    auth: authReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

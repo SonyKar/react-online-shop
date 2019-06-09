@@ -16,3 +16,8 @@ export {
     removeFromCart,
     updateCart
 } from './cart';
+
+export {
+    logIn,
+    logOut
+} from './auth';

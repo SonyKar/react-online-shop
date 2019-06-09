@@ -4,6 +4,9 @@ body {
   font-family: sans-serif;
   color: #232323;
 }
+main {
+  padding-top: 85px;
+}
 .container {
   padding: 0 5rem;
   max-width: 1440px;
@@ -116,6 +119,9 @@ Grid
   }
   .DesktopOnly {
     display: none!important;
+  }
+  main {
+    padding-top: 60px;
   }
 }
 @media (min-width: 768px) {
