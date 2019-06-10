@@ -40,6 +40,7 @@ export const UPDATE_CART_DB_START = 'UPDATE_CART_DB_START';
 export const UPDATE_CART_DB_FAILED = 'UPDATE_CART_DB_FAILED';
 
 export const EMPTY_CART = 'EMPTY_CART';
+// export const MERGE_CART = 'MERGE_CART';
 
 // Auth Reducer
 export const LOG_IN = 'LOG_IN';

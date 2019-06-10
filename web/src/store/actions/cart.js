@@ -21,12 +21,6 @@ export const fetchCartFailed = (error) => {
     };
 };
 
-export const emptyCart = () => {
-    return {
-        type: actionTypes.EMPTY_CART
-    };
-};
-
 export const fetchCart = (login) => {
     return dispatch => {
         dispatch(fetchCartStart());
@@ -166,5 +160,11 @@ export const updateCart = (id, size, qty) => {
         id: id,
         size: size,
         qty: qty
+    };
+};
+
+export const emptyCart = () => {
+    return {
+        type: actionTypes.EMPTY_CART
     };
 };
