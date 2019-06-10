@@ -176,9 +176,41 @@ export const updateProduct = (name, price, image, desc, id) => {
     };
 };
 
-export const removeProduct = () => {
+export const removeProductStart = () => {
     return {
-        type: actionTypes.REMOVE_PRODUCT
+        type: actionTypes.REMOVE_PRODUCT_START
+    };
+};
+
+export const removeProductSuccess = (id) => {
+    return {
+        type: actionTypes.REMOVE_PRODUCT_SUCCESS,
+        id: id
+    };
+};
+
+export const removeProductFailed = (error) => {
+    return {
+        type: actionTypes.REMOVE_PRODUCT_FAILED,
+        error: error
+    };
+};
+
+export const removeProduct = (id) => {
+    return dispatch => {
+        dispatch(removeProductStart());
+        let formData = new FormData();
+        formData.append('id', id);
+
+        axios.post('/response/products/removeProduct.php', formData)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.error === undefined) dispatch(removeProductSuccess(id));
+                else dispatch(removeProductFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(removeProductFailed(error));
+            })
     };
 };
 

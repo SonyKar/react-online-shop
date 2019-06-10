@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import './Product.css';
+import * as actions from '../../../store/actions/index';
 
 const Product = (props) => (
     <div>
@@ -12,7 +13,7 @@ const Product = (props) => (
             {props.role === 'admin' ? (
                 <div className="adminControls">
                     <button className="btn btn-transparent-light" onClick={() => props.edit(props.name, props.price, props.desc, props.id)}><FontAwesomeIcon icon={faEdit} /></button>
-                    <button className="btn btn-transparent-light"><FontAwesomeIcon icon={faTimes} /></button>
+                    <button className="btn btn-transparent-light" onClick={() => props.onRemoveProduct(props.id)}><FontAwesomeIcon icon={faTimes} /></button>
                 </div>
             ) : null}
             <NavLink to={window.location.pathname + '/' + props.id} onClick={props.clicked}>
@@ -34,4 +35,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Product);
+const mapDispatchToProps = dispatch => {
+    return {
+        onRemoveProduct: (id) => dispatch(actions.removeProduct(id))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

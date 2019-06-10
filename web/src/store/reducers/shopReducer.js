@@ -130,6 +130,28 @@ const updateProductFailed = (state, action) => {
     };
 };
 
+const removeProductStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const removeProductSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        products: state.products.slice().filter(product => product.id !== action.id)
+    };
+};
+
+const removeProductFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
 const emptyProducts = (state, action) => {
     return {
         ...state,
@@ -222,8 +244,12 @@ const reducer = (state = initialState, action) => {
             return updateProductSuccess(state, action);
         case actionTypes.UPDATE_PRODUCT_FAILED:
             return updateProductFailed(state, action);
-        case actionTypes.REMOVE_PRODUCT:
-            return {...state}
+        case actionTypes.REMOVE_PRODUCT_START:
+            return removeProductStart(state, action);
+        case actionTypes.REMOVE_PRODUCT_SUCCESS:
+            return removeProductSuccess(state, action);
+        case actionTypes.REMOVE_PRODUCT_FAILED:
+            return removeProductFailed(state, action);
         case actionTypes.SELECTED_PRODUCT:
             return selectedProduct(state, action);
         case actionTypes.EMPTY_PRODUCTS:
