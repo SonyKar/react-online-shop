@@ -90,6 +90,37 @@ export const addToCart = (id, name, price, size, qty, image) => {
     };
 };
 
+export const removeFromCartDBStart = () => {
+    return {
+        type: actionTypes.REMOVE_FROM_CART_DB_START
+    };
+};
+
+export const removeFromCartDBFailed = (error) => {
+    return {
+        type: actionTypes.REMOVE_FROM_CART_DB_FAILED,
+        error: error
+    };
+};
+
+export const removeFromCartDB = (id, size, login) => {
+    return dispatch => {
+        dispatch(removeFromCartDBStart());
+        axios.post('/response/cart/deleteCartItem.php?login=' + login, {
+            'id': id,
+            'size': size
+        })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.error === undefined) dispatch(removeFromCart(id, size));
+                else dispatch(removeFromCartDBFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(removeFromCartDBFailed(error));
+            });
+    };
+};
+
 export const removeFromCart = (id, size) => {
     return {
         type: actionTypes.REMOVE_FROM_CART,
@@ -114,13 +145,12 @@ export const updateCartDBFailed = (error) => {
 export const updateCartDB = (id, size, qty, login) => {
     return dispatch => {
         dispatch(updateCartDBStart());
-        axios.post('/response/cart/updateCartItem.php?login' + login, {
+        axios.put('/response/cart/updateCartItem.php?login=' + login, {
             'id': id,
             'size': size,
             'qty': qty
         })
             .then(res => {
-                console.log(res);
                 if (res.data.error === undefined) dispatch(updateCart(id, size, qty));
                 else dispatch(updateCartDBFailed(res.data.error));
             })

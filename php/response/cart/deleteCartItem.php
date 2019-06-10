@@ -6,7 +6,6 @@
     $login = $_GET['login'];
     $id = $data['id'];
     $idSize = $data['size'];
-    $qty = $data['qty'];
 
     switch($idSize) {
         case "XS":
@@ -26,7 +25,7 @@
             break;
     }
 
-    $sql = "UPDATE cart SET qty = $qty WHERE id_product = $id AND id_size = $idSize AND `login` = '$login'";
+    $sql = "DELETE FROM cart WHERE id_product = $id AND id_size = $idSize AND `login` = '$login'";
     if ($result = $conn->query($sql)) {
         echo true;
     }

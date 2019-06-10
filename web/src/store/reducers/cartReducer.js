@@ -81,10 +81,25 @@ const addToCart = (state, action) => {
     };
 };
 
+const removeFromCartDBStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const removeFromCartDBFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
 const removeFromCart = (state, action) => {
     return {
         ...state,
-        cart: state.cart.filter(item => item.id + item.size !== action.id + action.size)
+        cart: state.cart.filter(item => item.id + item.size !== action.id + action.size),
+        loading: false
     };
 };
 
@@ -136,6 +151,10 @@ const reducer = (state = initialState, action) => {
             return addToCartDBFailed(state, action);
         case actionTypes.ADD_TO_CART:
             return addToCart(state, action);
+        case actionTypes.REMOVE_FROM_CART_DB_START:
+            return removeFromCartDBStart(state, action);
+        case actionTypes.REMOVE_FROM_CART_DB_FAILED:
+            return removeFromCartDBFailed(state, action);
         case actionTypes.REMOVE_FROM_CART:
             return removeFromCart(state, action);
         case actionTypes.UPDATE_CART_DB_START:

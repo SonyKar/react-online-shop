@@ -14,6 +14,7 @@ export {
 export {
     addToCart,
     addToCartDB,
+    removeFromCartDB,
     removeFromCart,
     updateCart,
     updateCartDB,

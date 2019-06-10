@@ -65,7 +65,10 @@ class Layout extends Component {
                                     <span>{product.price} $</span>
                                     <div className="cartProductSettings">
                                         <QuantitySelection startingValue={+product.qty} updateState={shoppingCartQuantityChangeHandler} />
-                                        <button type="button" className="removeButton" onClick={() => {this.props.onRemoveItemFromCart(product.id, product.size)}}>REMOVE</button>
+                                        <button type="button" className="removeButton" onClick={() => {
+                                            if (this.props.login.length !== 0) this.props.onRemoveItemFromCartDB(product.id, product.size, this.props.login);
+                                            else this.props.onRemoveItemFromCart(product.id, product.size);
+                                        }}>REMOVE</button>
                                     </div>
                                 </div>
                             </div>
@@ -139,6 +142,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onRemoveItemFromCart: (id, size) => dispatch(actions.removeFromCart(id, size)),
+        onRemoveItemFromCartDB: (id, size, login) => dispatch(actions.removeFromCartDB(id, size, login)),
         onUpdateItem: (id, size, qty) => dispatch(actions.updateCart(id, size, qty)),
         onUpdateItemDB: (id, size, qty, login) => dispatch(actions.updateCartDB(id, size, qty, login)),
         onFetchCart: (login) => dispatch(actions.fetchCart(login))
