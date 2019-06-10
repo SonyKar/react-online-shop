@@ -92,6 +92,44 @@ const addProductFailed = (state, action) => {
     };
 };
 
+const updateProductStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const updateProductSuccess = (state, action) => {
+    const updatedProducts = state.products.slice().map(product => {
+        if (product.id === action.id) {
+            let updatedProduct = {
+                ...product,
+                name: action.name,
+                description: action.desc,
+                price: action.price
+            };
+            if (action.image) {
+                updatedProduct.image = action.image;
+            }
+            console.log(updatedProduct);
+            return updatedProduct;
+        }
+        return product;
+    });
+    return {
+        ...state,
+        loading: false,
+        products: updatedProducts
+    };
+};
+
+const updateProductFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
 const emptyProducts = (state, action) => {
     return {
         ...state,
@@ -178,6 +216,12 @@ const reducer = (state = initialState, action) => {
             return addProductSuccess(state, action);
         case actionTypes.ADD_PRODUCT_FAILED:
             return addProductFailed(state, action);
+        case actionTypes.UPDATE_PRODUCT_START:
+            return updateProductStart(state, action);
+        case actionTypes.UPDATE_PRODUCT_SUCCESS:
+            return updateProductSuccess(state, action);
+        case actionTypes.UPDATE_PRODUCT_FAILED:
+            return updateProductFailed(state, action);
         case actionTypes.REMOVE_PRODUCT:
             return {...state}
         case actionTypes.SELECTED_PRODUCT:

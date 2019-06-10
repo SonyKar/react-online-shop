@@ -75,7 +75,8 @@ class Collection extends Component {
             }
         },
         formIsValid: false,
-        isEdit: false
+        isEdit: false,
+        editId: ''
     }
 
     componentDidMount() {
@@ -111,7 +112,11 @@ class Collection extends Component {
             }
         }
 
-        this.props.onAddProduct(formData.name, formData.price, formData.desc, formData.file, this.props.match.params.collectionId);
+        if (this.state.isEdit) {
+            this.props.onUpdateProduct(formData.name, formData.price, formData.file, formData.desc, this.state.editId);
+        } else {
+            this.props.onAddProduct(formData.name, formData.price, formData.desc, formData.file, this.props.match.params.collectionId);
+        }
 
         this.cleanForm();
         this.addNewItemToggleHandler();
@@ -152,29 +157,38 @@ class Collection extends Component {
         updatedForm.name.value = '';
         updatedForm.price.value = '';
         updatedForm.desc.value = '';
+        updatedForm.name.valid = false;
+        updatedForm.price.valid = false;
+        updatedForm.desc.valid = false;
         updatedForm.file.value = '';
         updatedForm.file.files = null;
         updatedForm.file.validation.required = true;
         updatedForm.file.valid = false;
         this.setState({
             addItemForm: updatedForm,
-            isEdit: false
+            formIsValid: false,
+            isEdit: false,
+            editId: ''
         });
     }
 
-    fillUpForm = (name, price, desc) => {
+    fillUpForm = (name, price, desc, id) => {
         let updatedForm = {
             ...this.state.addItemForm
         };
         updatedForm.name.value = name;
         updatedForm.price.value = price;
         updatedForm.desc.value = desc;
+        updatedForm.name.valid = true;
+        updatedForm.price.valid = true;
+        updatedForm.desc.valid = true;
         updatedForm.file.validation.required = false;
         updatedForm.file.valid = true;
         this.setState({
             addItemForm: updatedForm,
             formIsValid: true,
-            isEdit: true
+            isEdit: true,
+            editId: id
         });
         this.addNewItemToggleHandler();
     }
@@ -272,7 +286,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onSelectedProduct: (id) => dispatch(actions.selectedProduct(id)),
         onFetchProducts: (collectionId) => dispatch(actions.fetchProducts(collectionId)),
-        onAddProduct: (name, price, desc, image, collectionId) => dispatch(actions.addProduct(name, price, desc, image, collectionId))
+        onAddProduct: (name, price, desc, image, collectionId) => dispatch(actions.addProduct(name, price, desc, image, collectionId)),
+        onUpdateProduct: (name, price, image, desc, id) => dispatch(actions.updateProduct(name, price, image, desc, id))
     };
 };
 

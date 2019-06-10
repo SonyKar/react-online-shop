@@ -130,6 +130,52 @@ export const addProduct = (name, price, desc, image, collectionId) => {
     };
 };
 
+export const updateProductStart = () => {
+    return {
+        type: actionTypes.UPDATE_PRODUCT_START
+    };
+};
+
+export const updateProductSuccess = (name, price, image, desc, id) => {
+    return {
+        type: actionTypes.UPDATE_PRODUCT_SUCCESS,
+        id: id,
+        image: image,
+        name: name,
+        price: price,
+        desc: desc
+    };
+};
+
+export const updateProductFailed = (error) => {
+    return {
+        type: actionTypes.UPDATE_PRODUCT_FAILED,
+        error: error
+    };
+};
+
+export const updateProduct = (name, price, image, desc, id) => {
+    return dispatch => {
+        dispatch(updateProductStart());
+        let formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('desc', desc);
+        formData.append('id', id);
+        if (image !== null) {
+            formData.append('image', image);
+        }
+        axios.post('/response/products/updateProduct.php', formData)
+            .then(res => {
+                if (res.data.error === undefined) dispatch(updateProductSuccess(name, price, image ? image.name : false, desc, id));
+                else dispatch(updateProductFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(updateProductFailed(error));
+            })
+    };
+};
+
 export const removeProduct = () => {
     return {
         type: actionTypes.REMOVE_PRODUCT

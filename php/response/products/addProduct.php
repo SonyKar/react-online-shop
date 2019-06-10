@@ -24,7 +24,6 @@
                 $sql = "SELECT id_product FROM products ORDER BY id_product DESC LIMIT 1";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
-                $conn->close();
                 echo $row['id_product'];
             } else {
                 echo json_encode([
@@ -41,4 +40,5 @@
             "error" => 'Something went wrong! Please try again later.'
         ]);
     }
+    $conn->close();
 ?>

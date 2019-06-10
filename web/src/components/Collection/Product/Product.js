@@ -11,7 +11,7 @@ const Product = (props) => (
         <div className="productImage">
             {props.role === 'admin' ? (
                 <div className="adminControls">
-                    <button className="btn btn-transparent-light" onClick={() => props.edit(props.name, props.price, props.desc)}><FontAwesomeIcon icon={faEdit} /></button>
+                    <button className="btn btn-transparent-light" onClick={() => props.edit(props.name, props.price, props.desc, props.id)}><FontAwesomeIcon icon={faEdit} /></button>
                     <button className="btn btn-transparent-light"><FontAwesomeIcon icon={faTimes} /></button>
                 </div>
             ) : null}

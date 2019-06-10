@@ -5,6 +5,7 @@ export {
     fetchProducts,
     fetchProduct,
     addProduct,
+    updateProduct,
     selectedProduct,
     emptyProducts,
     sortByPriceInc,
