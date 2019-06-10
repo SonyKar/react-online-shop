@@ -49,7 +49,7 @@ class Collection extends Component {
                 elementType: 'textarea',
                 elementConfig: {
                     placeholder: 'Items Description',
-                    cols: '25',
+                    rows: '10',
                     id: 'desc'
                 },
                 value: '',
@@ -72,25 +72,10 @@ class Collection extends Component {
                 },
                 valid: false,
                 touched: false
-            },
-            // collection: {
-            //     elementType: 'select',
-            //     elementConfig: {
-            //         options: [
-            //             this.props.collections.map(collection => {
-            //                 return {
-            //                     value: collection.id,
-            //                     displayValue: collection.name
-            //                 }
-            //             })
-            //         ]
-            //     },
-            //     value: this.props.collections[0].name,
-            //     validation: {},
-            //     valid: true
-            // }
+            }
         },
-        formIsValid: false
+        formIsValid: false,
+        isEdit: false
     }
 
     componentDidMount() {
@@ -112,7 +97,7 @@ class Collection extends Component {
             return {
                 addNewItem: !prevState.addNewItem
             }
-        })
+        });
     }
 
     addItemFormHandler = ( event ) => {
@@ -164,15 +149,34 @@ class Collection extends Component {
         let updatedForm = {
             ...this.state.addItemForm
         };
-        for (let formElementIdentifier in this.state.addItemForm) {
-            updatedForm[formElementIdentifier].value = '';
-            if (this.state.addItemForm[formElementIdentifier].files !== undefined) {
-                updatedForm[formElementIdentifier].files = null;
-            }
-        }
+        updatedForm.name.value = '';
+        updatedForm.price.value = '';
+        updatedForm.desc.value = '';
+        updatedForm.file.value = '';
+        updatedForm.file.files = null;
+        updatedForm.file.validation.required = true;
+        updatedForm.file.valid = false;
         this.setState({
-            addItemForm: updatedForm
+            addItemForm: updatedForm,
+            isEdit: false
         });
+    }
+
+    fillUpForm = (name, price, desc) => {
+        let updatedForm = {
+            ...this.state.addItemForm
+        };
+        updatedForm.name.value = name;
+        updatedForm.price.value = price;
+        updatedForm.desc.value = desc;
+        updatedForm.file.validation.required = false;
+        updatedForm.file.valid = true;
+        this.setState({
+            addItemForm: updatedForm,
+            formIsValid: true,
+            isEdit: true
+        });
+        this.addNewItemToggleHandler();
     }
 
     render() {
@@ -189,7 +193,9 @@ class Collection extends Component {
                             image={require('../../../../assets/img/' + product.image)}
                             name={product.name}
                             price={product.price}
+                            desc={product.description}
                             clicked={() => this.props.onSelectedProduct(product.id)}
+                            edit={this.fillUpForm}
                         />
                     </div>  
                 );
@@ -221,14 +227,14 @@ class Collection extends Component {
                         touched={formElement.config.touched}
                     />
                 ))}
-                <p className="text-center"><button className="btn btn-dark" disabled={!this.state.formIsValid}>Add</button></p>
+                <p className="text-center"><button className="btn btn-dark" disabled={!this.state.formIsValid}> { this.state.isEdit ? 'Update' : 'Add' } </button></p>
             </form>
         );
 
         return (
             <React.Fragment>
                 <div className="shopCollection">
-                    <FullModal show={this.state.addNewItem} close={this.addNewItemToggleHandler}>
+                    <FullModal show={this.state.addNewItem} close={this.addNewItemToggleHandler} clean={this.cleanForm}>
                         { form }
                     </FullModal>
                     <h2 className="CollectionHeader">{this.props.match.params.collectionName}</h2>

@@ -24,7 +24,10 @@ const FullModal = (props) => {
                         {props.children}
                     </div>
                     <div className="w-100 text-center">
-                        <button className="CloseButton" onClick={props.close}>
+                        <button className="CloseButton" onClick={() => {
+                            props.close();
+                            props.clean();
+                        }}>
                             <FontAwesomeIcon icon={faTimes} />
                         </button>
                     </div>

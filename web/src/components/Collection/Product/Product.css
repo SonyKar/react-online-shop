@@ -6,6 +6,23 @@
     border-color: #ccc;
     box-shadow: 0 2px 3px #ccc;
 }
+.productImage {
+    position: relative;
+}
+.productImage .adminControls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.productImage .adminControls button {
+    font-size: 1.1rem;
+}
+.productImage:hover > .adminControls {
+    opacity: 1;
+}
 .Product img {
     width: 100%;
 }

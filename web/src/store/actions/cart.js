@@ -105,7 +105,6 @@ export const removeFromCartDB = (id, size, login) => {
             'size': size
         })
             .then(res => {
-                console.log(res.data);
                 if (res.data.error === undefined) dispatch(removeFromCart(id, size));
                 else dispatch(removeFromCartDBFailed(res.data.error));
             })

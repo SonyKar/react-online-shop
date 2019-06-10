@@ -28,6 +28,7 @@
     top: 70px;
     left: -150px;
     transition: all 0.5s ease;
+    z-index: 100;
 }
 .Select .popover button {
     border: none;

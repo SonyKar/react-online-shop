@@ -228,6 +228,12 @@ UI Elements
 .btn-dark[disabled]:hover {
   color: #fff;
 }
+.btn-transparent-light {
+  background-color: transparent;
+  color: #848484;
+  border: none;
+  letter-spacing: 2px;
+}
 
 .line {
   width: 5%;

@@ -95,7 +95,7 @@ export const addProductSuccess = (name, price, image, desc, id) => {
             name: name,
             price: price,
             image: image,
-            desc: desc,
+            description: desc,
             id: id
         }
     };
