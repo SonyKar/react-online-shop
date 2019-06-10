@@ -28,7 +28,7 @@ class ProductSettings extends Component {
         return (
             <div className="ProductSettings">
                 <h1>{this.props.name}</h1>
-                <p className="price">{this.props.price}</p>
+                <p className="price">{this.props.price} $</p>
                 <form>
                     <p>Size: </p>
                     <select onChange={(event) => this.setSizeHandler(event)}>
@@ -41,7 +41,7 @@ class ProductSettings extends Component {
                     <p>Quantity:</p>
                     <QuantitySelection updateState={this.setQuantityHandler} />
                     <button type="button" className="btn btn-dark w-100 mt-2 mb-2" onClick={() => {
-                        this.props.onAddToCart(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image);
+                        this.props.login.length !== 0 ? this.props.onAddToCartDB(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image, this.props.login) : this.props.onAddToCart(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image);
                     }} >ADD TO CART</button>
                     <CollapsableBlock collapsableHeader="Description">
                         {this.props.desc}
@@ -52,10 +52,17 @@ class ProductSettings extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        onAddToCart: (id, name, price, size, qty, image) => dispatch(actions.addToCart(id, name, price, size, qty, image))
+        login: state.auth.person.login
     };
 };
 
-export default connect(null, mapDispatchToProps)(ProductSettings);
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddToCart: (id, name, price, size, qty, image) => dispatch(actions.addToCart(id, name, price, size, qty, image)),
+        onAddToCartDB: (id, name, price, size, qty, image, login) => dispatch(actions.addToCartDB(id, name, price, size, qty, image, login))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductSettings);

@@ -30,7 +30,7 @@ export const emptyCart = () => {
 export const fetchCart = (login) => {
     return dispatch => {
         dispatch(fetchCartStart());
-        axios.get('http://doublem.com/php/response/cart/getCartItems.php?login=' + login)
+        axios.get('/response/cart/getCartItems.php?login=' + login)
             .then(res => {
                 const fetchedCartItems = [];
                 for (let key in res.data) {
@@ -46,6 +46,37 @@ export const fetchCart = (login) => {
             });
     }
 }
+
+export const addToCartDBStart = () => {
+    return {
+        type: actionTypes.ADD_TO_CART_DB_START
+    };
+};
+
+export const addToCartDBFailed = (error) => {
+    return {
+        type: actionTypes.ADD_TO_CART_DB_FAILED,
+        error: error
+    };
+};
+
+export const addToCartDB = (id, name, price, size, qty, image, login) => {
+    return dispatch => {
+        dispatch(addToCartDBStart());
+        axios.post("/response/cart/addCartItem.php?login=" + login, {
+            id: id,
+            size: size,
+            qty: qty
+        })
+            .then(res => {
+                if (res.data.error === undefined) dispatch(addToCart(id, name, price, size, +qty, image));
+                else dispatch(addToCartDBFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(addToCartDBFailed(error));
+            })
+    };
+};
 
 export const addToCart = (id, name, price, size, qty, image) => {
     return {

@@ -13,6 +13,7 @@ export {
 } from './shop';
 export {
     addToCart,
+    addToCartDB,
     removeFromCart,
     updateCart,
     fetchCart,

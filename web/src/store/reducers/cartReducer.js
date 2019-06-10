@@ -33,6 +33,20 @@ const emptyCart = (state, action) => {
     };
 };
 
+const addToCartDBStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const addToCartDBFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    }
+}
+
 const addToCart = (state, action) => {
     let foundSimmilarElements = false;
     const oldProducts = state.cart.slice();
@@ -41,7 +55,7 @@ const addToCart = (state, action) => {
             foundSimmilarElements = true;
             return {
                 ...product,
-                qty: product.qty + action.qty
+                qty: +product.qty + action.qty
             }
         }
         return product;
@@ -62,7 +76,8 @@ const addToCart = (state, action) => {
     }
     return {
         ...state,
-        cart: newProducts
+        cart: newProducts,
+        loading: false
     }
 }
 
@@ -100,6 +115,10 @@ const reducer = (state = initialState, action) => {
             return fetchCartFailed(state, action);
         case actionTypes.EMPTY_CART:
             return emptyCart(state, action);
+        case actionTypes.ADD_TO_CART_DB_START:
+            return addToCartDBStart(state, action);
+        case actionTypes.ADD_TO_CART_DB_FAILED:
+            return addToCartDBFailed(state, action);
         case actionTypes.ADD_TO_CART:
             return addToCart(state, action);
         case actionTypes.REMOVE_FROM_CART:

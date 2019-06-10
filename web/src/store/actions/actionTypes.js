@@ -28,8 +28,15 @@ export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
 export const FETCH_CART_FAILED = 'FETCH_CART_FAILED';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const ADD_TO_CART_DB_START = 'ADD_TO_CART_DB_START';
+export const ADD_TO_CART_DB_FAILED = 'ADD_TO_CART_DB_FAILED';
+
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const REMOVE_FROM_CART_DB = 'REMOVE_FROM_CART_DB';
+
 export const UPDATE_CART = 'UPDATE_CART';
+export const UPDATE_CART_DB = 'UPDATE_CART_DB';
+
 export const EMPTY_CART = 'EMPTY_CART';
 
 // Auth Reducer
