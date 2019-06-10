@@ -1,6 +1,6 @@
 <?php
     require_once "../../connection.php";
-
+    
     $data = json_decode(file_get_contents("php://input"), true);
 
     $login = $_GET['login'];
@@ -25,18 +25,13 @@
             $idSize = 5;
             break;
     }
-    
-    $sql = "INSERT INTO cart VALUES('$login', $id, $idSize, $qty);";
+
+    $sql = "UPDATE cart SET qty = $qty WHERE id_product = $id AND id_size = $idSize AND `login` = 'admin'";
     if ($result = $conn->query($sql)) {
         echo true;
-    } else {
-        $sql = "UPDATE cart SET qty= $qty + qty WHERE id_product = $id AND id_size = $idSize AND `login` = '$login'";
-        if ($result = $conn->query($sql)) {
-            echo true;
-        }
-        else {
-            echo json_encode(["error" => "Something went wrong. Try again later!"]);
-        }
-    } 
+    }
+    else {
+        echo json_encode(["error" => "Something went wrong. Try again later!"]);
+    }
     $conn->close();
 ?>

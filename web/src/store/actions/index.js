@@ -16,6 +16,7 @@ export {
     addToCartDB,
     removeFromCart,
     updateCart,
+    updateCartDB,
     fetchCart,
     emptyCart
 } from './cart';

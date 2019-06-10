@@ -18,7 +18,6 @@ class Layout extends Component {
 
     componentWillUpdate() {
         if (this.props.login.length !== 0 && this.props.cart.length === 0 && !this.props.loading) {
-            console.log(this.props.login);
             this.props.onFetchCart(this.props.login);
         }
     }
@@ -51,7 +50,8 @@ class Layout extends Component {
             shoppingCart = (
                 this.props.cart.map(product => {
                     const shoppingCartQuantityChangeHandler = (qty) => {
-                        this.props.onUpdateItem(product.id, product.size, qty);
+                        if (this.props.login.length !== 0) this.props.onUpdateItemDB(product.id, product.size, +qty, this.props.login);
+                        else this.props.onUpdateItem(product.id, product.size, +qty);
                     }
                     return (
                         <div className="CartElement" key={product.id + product.size}>
@@ -64,7 +64,7 @@ class Layout extends Component {
                                     <p>{product.size}</p>
                                     <span>{product.price} $</span>
                                     <div className="cartProductSettings">
-                                        <QuantitySelection startingValue={product.qty} updateState={shoppingCartQuantityChangeHandler} />
+                                        <QuantitySelection startingValue={+product.qty} updateState={shoppingCartQuantityChangeHandler} />
                                         <button type="button" className="removeButton" onClick={() => {this.props.onRemoveItemFromCart(product.id, product.size)}}>REMOVE</button>
                                     </div>
                                 </div>
@@ -140,6 +140,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onRemoveItemFromCart: (id, size) => dispatch(actions.removeFromCart(id, size)),
         onUpdateItem: (id, size, qty) => dispatch(actions.updateCart(id, size, qty)),
+        onUpdateItemDB: (id, size, qty, login) => dispatch(actions.updateCartDB(id, size, qty, login)),
         onFetchCart: (login) => dispatch(actions.fetchCart(login))
     };
 };

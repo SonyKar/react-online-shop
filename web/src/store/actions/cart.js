@@ -95,6 +95,38 @@ export const removeFromCart = (id, size) => {
         type: actionTypes.REMOVE_FROM_CART,
         id: id,
         size: size
+    };
+};
+
+export const updateCartDBStart = () => {
+    return {
+        type: actionTypes.UPDATE_CART_DB_START
+    };
+};
+
+export const updateCartDBFailed = (error) => {
+    return {
+        type: actionTypes.UPDATE_CART_DB_FAILED,
+        error: error
+    };
+};
+
+export const updateCartDB = (id, size, qty, login) => {
+    return dispatch => {
+        dispatch(updateCartDBStart());
+        axios.post('/response/cart/updateCartItem.php?login' + login, {
+            'id': id,
+            'size': size,
+            'qty': qty
+        })
+            .then(res => {
+                console.log(res);
+                if (res.data.error === undefined) dispatch(updateCart(id, size, qty));
+                else dispatch(updateCartDBFailed(res.data.error));
+            })
+            .catch(error => {                
+                dispatch(updateCartDBFailed(error));
+            })
     }
 }
 
@@ -104,5 +136,5 @@ export const updateCart = (id, size, qty) => {
         id: id,
         size: size,
         qty: qty
-    }
-}
+    };
+};

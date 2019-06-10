@@ -4,8 +4,8 @@ import './QuantitySelection.css';
 
 class QuantitySelection extends Component {   
     state = {
-        quantity: 1,
-        startingValue: 1
+        quantity: this.props.startingValue ? this.props.startingValue : 1,
+        startingValue: this.props.startingValue ? this.props.startingValue : 1
     };
 
     componentWillUpdate(nextProps) {
@@ -43,7 +43,12 @@ class QuantitySelection extends Component {
     
     onChangeHandler = (event) => {
         if (+event.target.value > 0) {
-            this.setState({quantity: +event.target.value})
+            this.setState({quantity: +event.target.value});
+        }
+    }
+
+    onBlurHander = (event) => {
+        if (+event.target.value > 0) {
             this.props.updateState(+event.target.value);
         }
     }
@@ -52,7 +57,13 @@ class QuantitySelection extends Component {
         return (
             <div className="QuantitySelection">
                 <button type="button" onClick={this.substractQuantity}>-</button>
-                <input type="text" value={this.state.quantity} onKeyPress={(event) => this.onKeyPressHandler(event)} onChange={(event) => this.onChangeHandler(event)} />
+                <input 
+                    type="text" 
+                    value={this.state.quantity} 
+                    onKeyPress={(event) => this.onKeyPressHandler(event)} 
+                    onChange={(event) => this.onChangeHandler(event)} 
+                    onBlur={(event) => this.onBlurHander(event)}
+                />
                 <button type="button" onClick={this.addQuantity}>+</button>
             </div>
         );

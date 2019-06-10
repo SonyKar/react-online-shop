@@ -78,15 +78,29 @@ const addToCart = (state, action) => {
         ...state,
         cart: newProducts,
         loading: false
-    }
-}
+    };
+};
 
 const removeFromCart = (state, action) => {
     return {
         ...state,
         cart: state.cart.filter(item => item.id + item.size !== action.id + action.size)
-    }
-}
+    };
+};
+
+const updateCartDBStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const updateCartDBFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
 
 const updateCart = (state, action) => {
     const oldProducts = state.cart.slice();
@@ -94,14 +108,15 @@ const updateCart = (state, action) => {
         if (item.id === action.id && item.size === action.size) {
             return {
                 ...item,
-                qty: action.qty
+                qty: +action.qty
             }
         }
         return item;
     })
     return {
         ...state,
-        cart: newProducts
+        cart: newProducts,
+        loading: false
     }
 }
 
@@ -123,6 +138,10 @@ const reducer = (state = initialState, action) => {
             return addToCart(state, action);
         case actionTypes.REMOVE_FROM_CART:
             return removeFromCart(state, action);
+        case actionTypes.UPDATE_CART_DB_START:
+            return updateCartDBStart(state, action);
+        case actionTypes.UPDATE_CART_DB_FAILED:
+            return updateCartDBFailed(state, action);
         case actionTypes.UPDATE_CART:
             return updateCart(state, action);
         default: 
