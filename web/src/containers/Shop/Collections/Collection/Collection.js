@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import './Collection.css';
 import Spinner from '../../../../components/Spinner/Spinner';
+import FullModal from '../../../../hoc/FullModal/FullModal';
 import CollectionMenu from '../../../../components/Collection/CollectionMenu/CollectionMenu';
 import Product from '../../../../components/Collection/Product/Product';
 import Footer from '../../../../components/Footer/Footer';
@@ -10,7 +11,8 @@ import * as actions from '../../../../store/actions/index';
 
 class Collection extends Component {
     state = {
-        expand: false
+        expand: false,
+        addNewItem: false
     }
 
     componentDidMount() {
@@ -25,6 +27,14 @@ class Collection extends Component {
     
     shrinkProductsHandler = () => {        
         this.setState({expand: false});
+    }
+
+    addNewItemToggleHandler = () => {
+        this.setState(prevState => {
+            return {
+                addNewItem: !prevState.addNewItem
+            }
+        })
     }
 
     render() {
@@ -53,10 +63,16 @@ class Collection extends Component {
         return (
             <React.Fragment>
                 <div className="shopCollection">
+                    <FullModal show={this.state.addNewItem} close={this.addNewItemToggleHandler}>
+                        FOrms
+                    </FullModal>
                     <h2 className="CollectionHeader">{this.props.match.params.collectionName}</h2>
                     <CollectionMenu expand={this.expandProductsHandler} shrink={this.shrinkProductsHandler} isExpand={this.state.expand} />
                     <div className="container">
                         <div className="row">
+                            <div className="col-12 mb-2">
+                                <button onClick={this.addNewItemToggleHandler}>New Item</button>
+                            </div>
                             {
                                 products
                             }

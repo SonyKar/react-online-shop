@@ -1,0 +1,38 @@
+.FullModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 5rem 0;
+    transition: all .5s ease;
+    box-sizing: border-box;
+}
+
+.FullModal.Open {
+    transform: translateY(0);
+    
+}
+
+.FullModal.Close {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.FullModal .CloseButton {
+    border: 1px solid #232323;
+    color: #232323;
+    background-color: transparent;
+    border-radius: 50%;
+    padding: .9rem 1.25rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    outline: none;
+    transition: all .2s ease;
+}
+.FullModal .CloseButton:hover {
+    color: #fff;
+    background-color: #232323;
+}
