@@ -220,6 +220,14 @@ UI Elements
   color: #232323;
   background-color: transparent;
 }
+.btn-dark[disabled] {
+  background-color: #858282!important;
+  border-color: #858282;
+  cursor: not-allowed;
+}
+.btn-dark[disabled]:hover {
+  color: #fff;
+}
 
 .line {
   width: 5%;

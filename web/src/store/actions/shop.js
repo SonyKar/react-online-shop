@@ -31,7 +31,7 @@ export const fetchProducts = (collectionId) => {
                 } else {
                     const fetchedProducts = [];
                     for (let key in res.data) {
-                        fetchedProducts.push({
+                        fetchedProducts.unshift({
                             ...res.data[key],
                             id: key
                         });
@@ -82,9 +82,51 @@ export const fetchProduct = (productId, collectionId) => {
     };
 };
 
-export const addProduct = () => {
+export const addProductStart = () => {
     return {
-        type: actionTypes.ADD_PRODUCT
+        type: actionTypes.ADD_PRODUCT_START
+    };
+};
+
+export const addProductSuccess = (name, price, image, desc, id) => {
+    return {
+        type: actionTypes.ADD_PRODUCT_SUCCESS,
+        product: {
+            name: name,
+            price: price,
+            image: image,
+            desc: desc,
+            id: id
+        }
+    };
+};
+
+export const addProductFailed = (error) => {
+    return {
+        type: actionTypes.ADD_PRODUCT_FAILED,
+        error: error
+    };
+};
+
+export const addProduct = (name, price, desc, image, collectionId) => {
+    return dispatch => {
+        dispatch(addProductStart());
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('desc', desc);
+        formData.append('image', image);
+        formData.append('collectionId', collectionId);
+        axios.post('/response/products/addProduct.php', formData)
+            .then(res => {
+                if (res.data.error === undefined) {
+                    dispatch(addProductSuccess(name, price, image.name, desc, res.data));
+                }
+                else dispatch(addProductFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(addProductFailed(error));
+            });
     };
 };
 

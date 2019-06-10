@@ -4,7 +4,7 @@
 
     $collection = $_GET['collection'];
 
-    $sql = "SELECT id_product, name_product, price, path_photo, `description` FROM products INNER JOIN photo ON photo.id_photo = products.id_photo WHERE id_collection = $collection";
+    $sql = "SELECT id_product, name_product, price, path_photo, `description` FROM products INNER JOIN photo ON photo.id_photo = products.id_photo WHERE id_collection = $collection ORDER BY id_product DESC";
     $result = $conn->query($sql);
     $conn->close();
     if ($result->num_rows > 0) {

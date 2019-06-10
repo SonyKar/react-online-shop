@@ -68,6 +68,30 @@ const selectedProduct = (state, action) => {
     }
 }
 
+const addProductStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const addProductSuccess = (state, action) => {
+    let newProducts = state.products.slice();
+    newProducts.unshift(action.product);
+    return {
+        ...state,
+        products: newProducts,
+        loading: false
+    };
+};
+
+const addProductFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
 const emptyProducts = (state, action) => {
     return {
         ...state,
@@ -148,8 +172,12 @@ const reducer = (state = initialState, action) => {
             return fetchProductSuccess(state, action);
         case actionTypes.FETCH_PRODUCT_FAILED:
             return fetchProductFailed(state, action);
-        case actionTypes.ADD_PRODUCT:
-            return {...state}
+        case actionTypes.ADD_PRODUCT_START:
+            return addProductStart(state, action);
+        case actionTypes.ADD_PRODUCT_SUCCESS:
+            return addProductSuccess(state, action);
+        case actionTypes.ADD_PRODUCT_FAILED:
+            return addProductFailed(state, action);
         case actionTypes.REMOVE_PRODUCT:
             return {...state}
         case actionTypes.SELECTED_PRODUCT:

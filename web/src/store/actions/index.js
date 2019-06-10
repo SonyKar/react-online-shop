@@ -4,6 +4,7 @@ export {
 export {
     fetchProducts,
     fetchProduct,
+    addProduct,
     selectedProduct,
     emptyProducts,
     sortByPriceInc,

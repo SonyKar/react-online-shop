@@ -19,6 +19,7 @@
 .FullModal.Close {
     transform: translateY(100%);
     opacity: 0;
+    visibility: hidden;
 }
 
 .FullModal .CloseButton {
