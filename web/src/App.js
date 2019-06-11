@@ -9,6 +9,7 @@ import Collection from './containers/Shop/Collections/Collection/Collection';
 import Product from './containers/Shop/Product/Product';
 import Login from './components/Auth/Login/Login';
 import Signup from './components/Auth/Signup/Signup';
+import ContactUs from './components/ContactUs/ContactUs';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/collections" component={Collections} />
             <Route path="/login" component={Login} />
             <Route path="/sign-up" component={Signup} />
+            <Route path="/contact-us" component={ContactUs} />
             <Route path="/" exact component={Home} />
           </Switch>
         </Layout>

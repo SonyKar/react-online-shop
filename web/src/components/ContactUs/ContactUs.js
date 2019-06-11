@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import './Signup.css';
-import Input from '../../Input/Input';
-import { checkValidatity } from '../../../shared/utility';
-import * as actions from '../../../store/actions/index';
+import './ContactUs.css';
+import Input from '../Input/Input';
+import { checkValidatity } from '../../shared/utility';
+import * as actions from '../../store/actions/index';
 
-class Signup extends Component {
+class ContactUs extends Component {
     state = {
-        signUpForm: {
-            login: {
+        contactUsForm: {
+            name: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Login',
-                    id: 'login'
+                    placeholder: 'Your Name',
+                    id: 'name'
                 },
                 value: '',
                 validation: {
@@ -24,32 +24,31 @@ class Signup extends Component {
                 valid: false,
                 touched: false
             },
-            password: {
+            email: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'password',
-                    placeholder: 'Password',
-                    id: 'password'
+                    type: 'email',
+                    placeholder: 'Your E-Mail',
+                    id: 'email'
                 },
                 value: '',
                 validation: {
                     required: true,
-                    minLenght: 5
+                    isEmail: true
                 },
                 valid: false,
                 touched: false
             },
-            passwordRepeat: {
-                elementType: 'input',
+            message: {
+                elementType: 'textarea',
                 elementConfig: {
-                    type: 'password',
-                    placeholder: 'Repeat Password',
-                    id: 'password2'
+                    placeholder: 'Your Message',
+                    id: 'password',
+                    rows: 15
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    minLenght: 5
+                    required: true
                 },
                 valid: false,
                 touched: false
@@ -58,49 +57,49 @@ class Signup extends Component {
         formIsValid: false
     }
 
-    signUpFormHandler = ( event ) => {
+    contactUsFormHandler = ( event ) => {
         event.preventDefault();
 
         const formData = {};
-        for (let formElementIdentifier in this.state.signUpForm) {
-            formData[formElementIdentifier] = this.state.signUpForm[formElementIdentifier].value;
+        for (let formElementIdentifier in this.state.contactUsForm) {
+            formData[formElementIdentifier] = this.state.contactUsForm[formElementIdentifier].value;
         }
 
-        this.props.onSignup(formData.login, formData.password, formData.passwordRepeat);
+        this.props.onLogin(formData.login, formData.password);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
         let updatedFormElement = {
-            ...this.state.signUpForm[inputIdentifier],
+            ...this.state.contactUsForm[inputIdentifier],
             value: event.target.value,
-            valid: checkValidatity(event.target.value, this.state.signUpForm[inputIdentifier].validation),
+            valid: checkValidatity(event.target.value, this.state.contactUsForm[inputIdentifier].validation),
             touched: true
         };
-        const updatedSignUpForm = {
-            ...this.state.signUpForm,
+        const updatedContactUsForm = {
+            ...this.state.contactUsForm,
             [inputIdentifier]: updatedFormElement
         };
         let formIsValid = true;
-        for (let inputIdentifier in updatedSignUpForm) {
-            formIsValid = updatedSignUpForm[inputIdentifier].valid && formIsValid;
+        for (let inputIdentifier in updatedContactUsForm) {
+            formIsValid = updatedContactUsForm[inputIdentifier].valid && formIsValid;
         }
 
         this.setState({
-            signUpForm: updatedSignUpForm,
+            contactUsForm: updatedContactUsForm,
             formIsValid: formIsValid
         });
     }
 
     render() {
         const formElementsArray = [];
-        for (let key in this.state.signUpForm) {
+        for (let key in this.state.contactUsForm) {
             formElementsArray.push({
                 id: key,
-                config: this.state.signUpForm[key]
+                config: this.state.contactUsForm[key]
             })
         }
         let form = (
-            <form onSubmit={this.signUpFormHandler} encType="multipart/form-data">
+            <form onSubmit={this.contactUsFormHandler} encType="multipart/form-data">
                 {formElementsArray.map(formElement => (
                     <Input 
                         key={formElement.id}
@@ -116,16 +115,16 @@ class Signup extends Component {
                     />
                 ))}
                 <p className="error">{ this.props.error }</p>
-                <p className="text-center"><button className="btn btn-dark" disabled={!this.state.formIsValid || this.props.loading}> { this.props.loading ? 'Processing' : 'Sign Up' } </button></p>
+                <p className="text-center"><button className="btn btn-dark" disabled={!this.state.formIsValid || this.props.loading}> { this.props.loading ? 'Processing' : 'SEND' } </button></p>
             </form>
         );
 
-        if (this.props.role !== '') {
-            form = <Redirect from="/login" to="/" />
-        }
+        // if (this.props.role !== '') {
+        //     form = <Redirect from="/conta" to="/" />
+        // }
         
         return (
-            <div className="Signup">
+            <div className="ContactUs">
                 <div className="container">
                     <div className="row">
                         <div className="col-6" style={{margin: 'auto'}}>
@@ -148,11 +147,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSignup: (login, password, password2) => {
-            dispatch(actions.signup(login, password, password2));
+        onLogin: (login, password) => {
+            dispatch(actions.login(login, password));
             dispatch(actions.emptyCart());
         }
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactUs);

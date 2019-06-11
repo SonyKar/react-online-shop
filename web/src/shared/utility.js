@@ -21,7 +21,11 @@ export const checkValidatity = (value, rules) => {
     }
 
     if (rules.isNumber) {
-        isValid = /^[0-9]+([.][0-9]+)?$/.test(value);
+        isValid = /^[0-9]+([.][0-9]+)?$/.test(value) && isValid;
+    }
+
+    if (rules.isEmail) {
+        isValid = /^[A-Za-z0-9+_.-]+@(.+)$/.test(value) && isValid;
     }
 
     return isValid;
