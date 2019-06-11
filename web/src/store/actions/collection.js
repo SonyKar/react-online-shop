@@ -125,3 +125,40 @@ export const updateCollection = (name, image, id) => {
             });
     };
 };
+
+export const removeCollectionStart = () => {
+    return {
+        type: actionTypes.REMOVE_COLLECTION_START
+    };
+};
+
+export const removeCollectionSuccess = (id) => {
+    return {
+        type: actionTypes.REMOVE_COLLECTION_SUCCESS,
+        id: id
+    };
+};
+
+export const removeCollectionFailed = (error) => {
+    return {
+        type: actionTypes.REMOVE_COLLECTION_FAILED,
+        error: error
+    };
+};
+
+export const removeCollection = (id) => {
+    return dispatch => {
+        dispatch(removeCollectionStart());
+        let formData = new FormData();
+        formData.append('id', id);
+        axios.post('/response/collections/removeCollection.php', formData)
+            .then(res => {
+                console.log(res);
+                if (res.data.error === undefined) dispatch(removeCollectionSuccess(id));
+                else dispatch(removeCollectionFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(removeCollectionFailed(error));
+            });
+    };
+};

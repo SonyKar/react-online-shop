@@ -37,7 +37,7 @@ const addCollectionStart = (state, action) => {
 
 const addCollectionSuccess = (state, action) => {
     let newCollections = state.collections.slice();
-    newCollections.unshift(action.collection);
+    newCollections.push(action.collection);
     return {
         ...state,
         loading: false,
@@ -88,6 +88,28 @@ const updateCollectionFailed = (state, action) => {
     };
 };
 
+const removeCollectionStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const removeCollectionSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        collections: state.collections.slice().filter(collection => +collection.id !== +action.id)
+    };
+};
+
+const removeCollectionFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.FETCH_COLLECTIONS_START:
@@ -107,6 +129,12 @@ const reducer = (state = initialState, action) => {
         case actionTypes.UPDATE_COLLECTION_SUCCESS:
             return updateCollectionSuccess(state, action);
         case actionTypes.UPDATE_COLLECTION_FAILED:
+            return removeCollectionFailed(state, action);
+        case actionTypes.REMOVE_COLLECTION_START:
+            return removeCollectionStart(state, action);
+        case actionTypes.REMOVE_COLLECTION_SUCCESS:
+            return removeCollectionSuccess(state, action);
+        case actionTypes.REMOVE_COLLECTION_FAILED:
             return updateCollectionFailed(state, action);
         default: 
             return state;

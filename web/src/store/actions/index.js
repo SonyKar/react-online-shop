@@ -1,7 +1,8 @@
 export {
     fetchCollections,
     addCollection,
-    updateCollection
+    updateCollection,
+    removeCollection
 } from './collection';
 export {
     fetchProducts,

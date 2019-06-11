@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import './Collection.css';
+import * as actions from '../../store/actions/index';
 
 const Collection = (props) => (
     <div className="col-xl-4 col-6 mt-2">
@@ -14,7 +15,7 @@ const Collection = (props) => (
             {props.role === 'admin' ? (
                 <div className="adminControls">
                     <button className="btn btn-transparent-light" onClick={() => props.edit(props.name, props.collectionId)}><FontAwesomeIcon icon={faEdit} /></button>
-                    <button className="btn btn-transparent-light" onClick={() => props.onRemoveProduct(props.id)}><FontAwesomeIcon icon={faTimes} /></button>
+                    <button className="btn btn-transparent-light" onClick={() => props.onRemoveCollection(props.collectionId)}><FontAwesomeIcon icon={faTimes} /></button>
                 </div>
             ) : null}
             <h2>{props.name}</h2>
@@ -36,7 +37,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // onRemoveProduct: (id) => dispatch(actions.removeProduct(id))
+        onRemoveCollection: (id) => dispatch(actions.removeCollection(id))
     };
 };
 
