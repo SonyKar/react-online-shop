@@ -25,9 +25,15 @@ header .Auth {
     align-items: center;
     margin-top: 10px;
 }
-header .Auth a {
+header .Auth a, header .Auth button {
     color: #ccc;
     letter-spacing: 2px;
     margin-left: 20px;
     font-size: .8rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+header .Auth button {
+    margin: 0;
 }

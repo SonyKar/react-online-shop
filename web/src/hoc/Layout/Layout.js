@@ -88,6 +88,20 @@ class Layout extends Component {
             );
         }
 
+        let auth = (
+            <div className="AuthSidebar">
+                <NavLink exact to="/login">Log in</NavLink>
+                <NavLink exact to="/sign-up">Sign up</NavLink>
+            </div>
+        );
+        if (this.props.login !== '') {
+            auth = (
+                <div className="AuthSidebar">
+                    <h5 className="m-0">Welcome, {this.props.login}</h5> <button onClick={this.props.onLogout}>Logout</button>
+                </div>
+            );
+        }
+
         return (
             <React.Fragment>
                 <Navbar 
@@ -107,10 +121,7 @@ class Layout extends Component {
                             <NavigationItems isVertical />
                         </nav>
                     </div>
-                    <div className="AuthSidebar">
-                        <NavLink exact to="/auth">Log in</NavLink>
-                        <NavLink exact to="/sign-up">Sign up</NavLink>
-                    </div>
+                    {auth}
                 </SideDrawer>
                 {/* Shopping Cart */}
                 <SideDrawer
@@ -148,7 +159,11 @@ const mapDispatchToProps = dispatch => {
         onRemoveItemFromCartDB: (id, size, login) => dispatch(actions.removeFromCartDB(id, size, login)),
         onUpdateItem: (id, size, qty) => dispatch(actions.updateCart(id, size, qty)),
         onUpdateItemDB: (id, size, qty, login) => dispatch(actions.updateCartDB(id, size, qty, login)),
-        onFetchCart: (login) => dispatch(actions.fetchCart(login))
+        onFetchCart: (login) => dispatch(actions.fetchCart(login)),
+        onLogout: () => {
+            dispatch(actions.logout());
+            dispatch(actions.emptyCart());
+        }
     };
 };
 

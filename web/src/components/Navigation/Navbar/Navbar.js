@@ -14,14 +14,13 @@ const Navbar = (props) => {
     let auth = (
         <React.Fragment>
             <NavLink exact to="/login">Log in</NavLink>
-            {/* <button onClick={props.onLogIn}>Log In</button> */}
             <NavLink exact to="/sign-up">Sign up</NavLink>
         </React.Fragment>
     );
     if (props.login !== '') {
         auth = (
             <React.Fragment>
-                <h5 className="m-0">Welcome, {props.login} <button onClick={props.onLogout}>Log Out</button></h5>
+                <h5 className="m-0">Welcome, {props.login} <button onClick={props.onLogout}>Logout</button></h5>
             </React.Fragment>
         );
     }

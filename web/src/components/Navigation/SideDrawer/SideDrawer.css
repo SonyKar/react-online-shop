@@ -54,9 +54,13 @@
     display: flex;
     justify-content: space-between;
 }
-.AuthSidebar a {
+.AuthSidebar a, .AuthSidebar button {
     color: #ccc;
     letter-spacing: 2px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
 .SideDrawer a {
     color: #ccc!important;
