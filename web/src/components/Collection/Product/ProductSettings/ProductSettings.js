@@ -61,7 +61,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAddToCart: (id, name, price, size, qty, image, collectionId) => dispatch(actions.addToCart(id, name, price, size, qty, image, collectionId)),
-        onAddToCartDB: (id, name, price, size, qty, image, login) => dispatch(actions.addToCartDB(id, name, price, size, qty, image, login))
+        onAddToCartDB: (id, name, price, size, qty, image, collectionId, login) => dispatch(actions.addToCartDB(id, name, price, size, qty, image, collectionId, login))
     };
 };
 

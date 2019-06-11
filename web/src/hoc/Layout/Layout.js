@@ -14,13 +14,12 @@ class Layout extends Component {
     state = { 
         showSideMenu: false,
         showShoppingCart: false,
-        cartIsEmpty: false
+        price: 0
     }
 
     componentWillUpdate() {
-        if (this.props.login.length !== 0 && this.props.cart.length === 0 && !this.props.loading && !this.state.cartIsEmpty) {
+        if (this.props.login.length !== 0 && this.props.cart.length === 0 && !this.props.loading) {
             this.props.onFetchCart(this.props.login);
-            this.setState({cartIsEmpty: true});
         }
     }
 
@@ -52,11 +51,9 @@ class Layout extends Component {
             shoppingCart = (
                 this.props.cart.map(product => {
                     const shoppingCartQuantityChangeHandler = (qty) => {
-                        this.setState({cartIsEmpty: false});
                         if (this.props.login.length !== 0) this.props.onUpdateItemDB(product.id, product.size, +qty, this.props.login);
                         else this.props.onUpdateItem(product.id, product.size, +qty);
                     }
-                    console.log(product);
                     return (
                         <div className="CartElement" key={product.id + product.size}>
                             <div className="row align-items-center">
@@ -134,8 +131,11 @@ class Layout extends Component {
                     <div className="sideDrawerHeader">
                         <span>CART</span>
                     </div>
-                    <div style={{height: '100%', overflow: 'auto'}}>
+                    <div style={{height: '100%', overflow: 'auto', padding: '1rem 0'}}>
                         {shoppingCart}
+                    </div>
+                    <div>
+                        <button className="btn btn-dark w-100">CHECKOUT - {+this.props.price.toFixed(2)}$</button>
                     </div>
                 </SideDrawer>
                     <main>
@@ -150,7 +150,8 @@ const mapStateToProps = state => {
     return {
         cart: state.cart.cart,
         loading: state.cart.loading,
-        login: state.auth.person.login
+        login: state.auth.person.login,
+        price: state.cart.price
     };
 };
 

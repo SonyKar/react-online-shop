@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     cart: [],
-    loading: false
+    loading: false,
+    price: 0
 }
 
 const fetchCartStart = (state, action) => {
@@ -13,10 +14,15 @@ const fetchCartStart = (state, action) => {
 };
 
 const fetchCartSuccess = (state, action) => {
+    let price = 0;
+    action.cartItems.forEach(item => {
+        price += item.price * item.qty;
+    });
     return {
         ...state,
         cart: action.cartItems,
-        loading: false
+        loading: false,
+        price: price
     };
 };
 
@@ -49,10 +55,12 @@ const addToCartDBFailed = (state, action) => {
 
 const addToCart = (state, action) => {
     let foundSimmilarElements = false;
+    let price = state.price;
     const oldProducts = state.cart.slice();
     let newProducts = oldProducts.map(product => {
         if (product.id === action.id && product.size === action.size) {
             foundSimmilarElements = true;
+            price += action.qty * product.price;
             return {
                 ...product,
                 qty: +product.qty + action.qty
@@ -61,6 +69,7 @@ const addToCart = (state, action) => {
         return product;
     });
     if (!foundSimmilarElements) {
+        price += action.qty * action.price;
         const updatedItem = {
             id: action.id,
             name: action.name,
@@ -78,7 +87,8 @@ const addToCart = (state, action) => {
     return {
         ...state,
         cart: newProducts,
-        loading: false
+        loading: false,
+        price: price
     };
 };
 
@@ -97,10 +107,19 @@ const removeFromCartDBFailed = (state, action) => {
 };
 
 const removeFromCart = (state, action) => {
+    let price = state.price;
+    const newCartItems = state.cart.filter(item => {
+        if (item.id + item.size === action.id + action.size) {
+            price -= item.qty * item.price;
+            return false;
+        }
+        return true;
+    });
     return {
         ...state,
-        cart: state.cart.filter(item => item.id + item.size !== action.id + action.size),
-        loading: false
+        cart: newCartItems,
+        loading: false,
+        price: price
     };
 };
 
@@ -120,8 +139,15 @@ const updateCartDBFailed = (state, action) => {
 
 const updateCart = (state, action) => {
     const oldProducts = state.cart.slice();
+    let price = state.price;
     let newProducts = oldProducts.map(item => {
         if (item.id === action.id && item.size === action.size) {
+            const qty = action.qty - item.qty;
+            if (qty > 0) {
+                price += item.price * qty;
+            } else {
+                price -= item.price * -qty;
+            }
             return {
                 ...item,
                 qty: +action.qty
@@ -132,7 +158,8 @@ const updateCart = (state, action) => {
     return {
         ...state,
         cart: newProducts,
-        loading: false
+        loading: false,
+        price: price
     }
 }
 
