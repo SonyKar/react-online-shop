@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import axios from '../../axios';
 
 import './ContactUs.css';
 import Input from '../Input/Input';
 import { checkValidatity } from '../../shared/utility';
-import * as actions from '../../store/actions/index';
 
 class ContactUs extends Component {
     state = {
@@ -54,7 +52,10 @@ class ContactUs extends Component {
                 touched: false
             }
         },
-        formIsValid: false
+        formIsValid: false,
+        loading: false,
+        error: '',
+        success: false
     }
 
     contactUsFormHandler = ( event ) => {
@@ -65,7 +66,37 @@ class ContactUs extends Component {
             formData[formElementIdentifier] = this.state.contactUsForm[formElementIdentifier].value;
         }
 
-        this.props.onLogin(formData.login, formData.password);
+        this.setState({
+            loading: true,
+            error: '',
+            success: false
+        });
+        const mailData = new FormData();
+        mailData.append('name', formData.name);
+        mailData.append('email', formData.email);
+        mailData.append('message', formData.message);
+
+        axios.post('/response/sendMail.php', mailData)
+            .then(res => {
+                if (res.data.error === undefined) {
+                    this.setState({
+                        success: true,
+                        loading: false
+                    }); 
+                    this.cleanForm();
+                } else {
+                    this.setState({
+                        loading: false,
+                        error: res.data.error
+                    });
+                }
+            })
+            .catch(error => {
+                this.setState({
+                    loading: false,
+                    error: error
+                });
+            });
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -87,6 +118,18 @@ class ContactUs extends Component {
         this.setState({
             contactUsForm: updatedContactUsForm,
             formIsValid: formIsValid
+        });
+    }
+
+    cleanForm = () => {
+        let updatedForm = {
+            ...this.state.contactUsForm
+        };
+        updatedForm.name.value = '';
+        updatedForm.email.value = '';
+        updatedForm.message.value = '';
+        this.setState({
+            contactUsForm: updatedForm
         });
     }
 
@@ -114,14 +157,11 @@ class ContactUs extends Component {
                         touched={formElement.config.touched}
                     />
                 ))}
-                <p className="error">{ this.props.error }</p>
-                <p className="text-center"><button className="btn btn-dark" disabled={!this.state.formIsValid || this.props.loading}> { this.props.loading ? 'Processing' : 'SEND' } </button></p>
+                <p className="error">{ this.state.error }</p>
+                {this.state.success ? <p className="text-center">Thank you for contacting us!</p> : null}
+                <p className="text-center"><button className="btn btn-dark" disabled={!this.state.formIsValid || this.state.loading}> { this.state.loading ? 'Processing' : 'SEND' } </button></p>
             </form>
         );
-
-        // if (this.props.role !== '') {
-        //     form = <Redirect from="/conta" to="/" />
-        // }
         
         return (
             <div className="ContactUs">
@@ -137,21 +177,4 @@ class ContactUs extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        error: state.auth.error,
-        loading: state.auth.loading,
-        role: state.auth.person.role
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onLogin: (login, password) => {
-            dispatch(actions.login(login, password));
-            dispatch(actions.emptyCart());
-        }
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactUs);
+export default ContactUs;
