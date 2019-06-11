@@ -76,12 +76,28 @@ class Collection extends Component {
         },
         formIsValid: false,
         isEdit: false,
-        editId: ''
+        editId: '',
+        collectionName: ''
     }
 
     componentDidMount() {
+        if (this.props.collections.length === 0) {
+            this.props.onFetchCollections();
+        }
         if (this.props.products.length === 0) {
             this.props.onFetchProducts(this.props.match.params.collectionId);
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.state.collectionName === '') {
+            this.props.collections.forEach(collection => {
+                if (collection.id === this.props.match.params.collectionId) {
+                    this.setState({
+                        collectionName: collection.name
+                    });
+                }
+            })
         }
     }
 
@@ -251,7 +267,7 @@ class Collection extends Component {
                     <FullModal show={this.state.addNewItem} close={this.addNewItemToggleHandler} clean={this.cleanForm}>
                         { form }
                     </FullModal>
-                    <h2 className="CollectionHeader">{this.props.match.params.collectionName}</h2>
+                    <h2 className="CollectionHeader">{this.state.collectionName}</h2>
                     <CollectionMenu expand={this.expandProductsHandler} shrink={this.shrinkProductsHandler} isExpand={this.state.expand} />
                     <div className="container">
                         <div className="row">
@@ -286,6 +302,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onSelectedProduct: (id) => dispatch(actions.selectedProduct(id)),
         onFetchProducts: (collectionId) => dispatch(actions.fetchProducts(collectionId)),
+        onFetchCollections: () => dispatch(actions.fetchCollections()),
         onAddProduct: (name, price, desc, image, collectionId) => dispatch(actions.addProduct(name, price, desc, image, collectionId)),
         onUpdateProduct: (name, price, image, desc, id) => dispatch(actions.updateProduct(name, price, image, desc, id))
     };
