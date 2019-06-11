@@ -33,10 +33,10 @@ class Layout extends Component {
                     return (
                         <div className="CartElement" key={product.id + product.size}>
                             <div className="row align-items-center">
-                                <div className="col-4">
+                                <div className="col-4 col-sm-4">
                                     <img src={require('../../assets/img/' + product.image)} alt="" className="w-100" />
                                 </div>
-                                <div className="col-8">
+                                <div className="col-8 col-sm-8">
                                     <h5 className="mb-0"><NavLink to={"/collections/" + product.collectionId + '/' + product.id}>{product.name}</NavLink></h5>
                                     <p>{product.size}</p>
                                     <span>{product.price} $</span>
