@@ -30,5 +30,6 @@ export {
 
 export {
     login,
+    signup,
     logout
 } from './auth';

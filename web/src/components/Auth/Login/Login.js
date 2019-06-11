@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 
 import './Login.css';
 import Input from '../../Input/Input';
-import Spinner from '../../Spinner/Spinner';
 import { checkValidatity } from '../../../shared/utility';
 import * as actions from '../../../store/actions/index';
 

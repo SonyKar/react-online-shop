@@ -37,6 +37,34 @@ const loginFailed = (state, action) => {
     };
 };
 
+const signupStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const signupSuccess = (state, action) => {
+    return {
+        ...state,
+        person: {
+            ...state.person,
+            login: action.login,
+            role: action.role
+        },
+        loading: false,
+        error: ''
+    };
+};
+
+const signupFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false,
+        error: action.error
+    };
+};
+
 const logout = (state, action) => {
     return {
         ...state,
@@ -57,6 +85,12 @@ const reducer = (state = initialState, action) => {
             return loginSuccess(state, action);
         case actionTypes.LOG_IN_FAILED:
             return loginFailed(state, action);
+        case actionTypes.SIGN_UP_START:
+            return signupStart(state, action);
+        case actionTypes.SIGN_UP_SUCCESS:
+            return signupSuccess(state, action);
+        case actionTypes.SIGN_UP_FAILED:
+            return signupFailed(state, action);
         case actionTypes.LOG_OUT:
             return logout(state, action);
         default:

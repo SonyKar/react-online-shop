@@ -13,12 +13,14 @@ import * as actions from '../../store/actions/index';
 class Layout extends Component {
     state = { 
         showSideMenu: false,
-        showShoppingCart: false
+        showShoppingCart: false,
+        cartIsEmpty: false
     }
 
     componentWillUpdate() {
-        if (this.props.login.length !== 0 && this.props.cart.length === 0 && !this.props.loading) {
+        if (this.props.login.length !== 0 && this.props.cart.length === 0 && !this.props.loading && !this.state.cartIsEmpty) {
             this.props.onFetchCart(this.props.login);
+            this.setState({cartIsEmpty: true});
         }
     }
 
@@ -50,6 +52,7 @@ class Layout extends Component {
             shoppingCart = (
                 this.props.cart.map(product => {
                     const shoppingCartQuantityChangeHandler = (qty) => {
+                        this.setState({cartIsEmpty: false});
                         if (this.props.login.length !== 0) this.props.onUpdateItemDB(product.id, product.size, +qty, this.props.login);
                         else this.props.onUpdateItem(product.id, product.size, +qty);
                     }

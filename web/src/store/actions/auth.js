@@ -40,6 +40,46 @@ export const login = (login, password) => {
     }
 }
 
+export const signupStart = () => {
+    return {
+        type: actionTypes.SIGN_UP_START
+    };
+};
+
+export const signupSuccess = (login, role) => {
+    return {
+        type: actionTypes.SIGN_UP_SUCCESS,
+        login: login,
+        role: role
+    };
+};
+
+export const signupFailed = (error) => {
+    return {
+        type: actionTypes.SIGN_UP_FAILED,
+        error: error
+    };
+};
+
+export const signup = (login, password, password2) => {
+    return dispatch => {
+        dispatch(signupStart());
+        let formData = new FormData();
+        formData.append('login', login);
+        formData.append('password', password);
+        formData.append('password2', password2);
+
+        axios.post('/response/auth/signup.php', formData)
+            .then(res => {
+                if (res.data.error === undefined) dispatch(signupSuccess(login, res.data.role));
+                else dispatch(signupFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(signupFailed(error));
+            })
+    }
+}
+
 export const logout = () => {
     return {
         type: actionTypes.LOG_OUT
