@@ -74,12 +74,54 @@ export const addCollection = (name, image) => {
 
         axios.post('/response/collections/addCollection.php', formData)
             .then(res => {
-                console.log(res.data);
                 if (res.data.error === undefined) dispatch(addCollectionSuccess(name, image.name, res.data));
                 else dispatch(addCollectionFailed(res.data.error));
             })
             .catch(error => {
                 dispatch(addCollectionFailed(error));
+            });
+    };
+};
+
+export const updateCollectionStart = () => {
+    return {
+        type: actionTypes.UPDATE_COLLECTION_START
+    };
+};
+
+export const updateCollectionSuccess = (name, image, id) => {
+    return {
+        type: actionTypes.UPDATE_COLLECTION_SUCCESS,
+        name: name,
+        image: image,
+        id: id
+    };
+};
+
+export const updateCollectionFailed = (error) => {
+    return {
+        type: actionTypes.UPDATE_COLLECTION_FAILED,
+        error: error
+    };
+};
+
+export const updateCollection = (name, image, id) => {
+    return dispatch => {
+        dispatch(updateCollectionStart());
+        let formData = new FormData();
+        formData.append('name', name);
+        formData.append('id', id);
+        if (image !== null) {
+            formData.append('image', image);
+        }
+
+        axios.post('/response/collections/updateCollection.php', formData)
+            .then(res => {
+                if (res.data.error === undefined) dispatch(updateCollectionSuccess(name, image ? image.name : false, id));
+                else dispatch(updateCollectionFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(updateCollectionFailed(error));
             });
     };
 };

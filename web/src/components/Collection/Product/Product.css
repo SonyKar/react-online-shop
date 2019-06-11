@@ -9,7 +9,7 @@
 .productImage {
     position: relative;
 }
-.productImage .adminControls {
+.adminControls {
     position: absolute;
     top: 0;
     right: 0;

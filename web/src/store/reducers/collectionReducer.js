@@ -52,6 +52,42 @@ const addCollectionFailed = (state, action) => {
     };
 };
 
+const updateCollectionStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const updateCollectionSuccess = (state, action) => {
+    const oldCollections = state.collections.slice();
+    const newCollections = oldCollections.map(collection => {
+        if (+collection.id === +action.id) {
+            let updatedCollection = {
+                ...collection,
+                name: action.name
+            };
+            if (action.image) {
+                updatedCollection.image = action.image;
+            }
+            return updatedCollection;
+        }
+        return collection;
+    });
+    return {
+        ...state,
+        loading: false,
+        collections: newCollections
+    };
+};
+
+const updateCollectionFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.FETCH_COLLECTIONS_START:
@@ -66,6 +102,12 @@ const reducer = (state = initialState, action) => {
             return addCollectionSuccess(state, action);
         case actionTypes.ADD_COLLECTION_FAILED:
             return addCollectionFailed(state, action);
+        case actionTypes.UPDATE_COLLECTION_START:
+            return updateCollectionStart(state, action);
+        case actionTypes.UPDATE_COLLECTION_SUCCESS:
+            return updateCollectionSuccess(state, action);
+        case actionTypes.UPDATE_COLLECTION_FAILED:
+            return updateCollectionFailed(state, action);
         default: 
             return state;
     }

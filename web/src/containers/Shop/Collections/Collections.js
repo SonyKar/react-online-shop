@@ -75,7 +75,7 @@ class Collections extends Component {
         }
 
         if (this.state.isEdit) {
-            this.props.onUpdateProduct(formData.name, formData.price, formData.file, formData.desc, this.state.editId);
+            this.props.onUpdateCollection(formData.name, formData.file, this.state.editId);
         } else {
             this.props.onAddCollection(formData.name, formData.file);
         }
@@ -156,6 +156,7 @@ class Collections extends Component {
                     name={collection.name}
                     image={require('../../../assets/img/' + collection.image)}
                     collectionId={collection.id}
+                    edit={this.fillUpForm}
                 />
             ));
         }
@@ -229,7 +230,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchCollections: () => dispatch(actions.fetchCollections()),
         onEmptyProducts: () => dispatch(actions.emptyProducts()),
-        onAddCollection: (name, image) => dispatch(actions.addCollection(name, image))
+        onAddCollection: (name, image) => dispatch(actions.addCollection(name, image)),
+        onUpdateCollection: (name, image, id) => dispatch(actions.updateCollection(name, image, id))
     };
 };
 

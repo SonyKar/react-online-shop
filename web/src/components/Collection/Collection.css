@@ -6,4 +6,12 @@
     word-break: break-all;
     height: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 0;
+}
+.Collection .adminControls button {
+    font-size: 1.1rem;
+}
+.Collection:hover > .adminControls {
+    opacity: 1;
 }

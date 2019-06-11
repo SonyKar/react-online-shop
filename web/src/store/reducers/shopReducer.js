@@ -111,7 +111,6 @@ const updateProductSuccess = (state, action) => {
             if (action.image) {
                 updatedProduct.image = action.image;
             }
-            console.log(updatedProduct);
             return updatedProduct;
         }
         return product;
