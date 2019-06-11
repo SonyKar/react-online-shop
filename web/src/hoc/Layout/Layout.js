@@ -56,6 +56,7 @@ class Layout extends Component {
                         if (this.props.login.length !== 0) this.props.onUpdateItemDB(product.id, product.size, +qty, this.props.login);
                         else this.props.onUpdateItem(product.id, product.size, +qty);
                     }
+                    console.log(product);
                     return (
                         <div className="CartElement" key={product.id + product.size}>
                             <div className="row align-items-center">
@@ -63,7 +64,7 @@ class Layout extends Component {
                                     <img src={require('../../assets/img/' + product.image)} alt="" className="w-100" />
                                 </div>
                                 <div className="col-8">
-                                    <h5 className="mb-0"><NavLink to={"/collections/sweatshirts/" + product.id}>{product.name}</NavLink></h5>
+                                    <h5 className="mb-0"><NavLink to={"/collections/" + product.collectionId + '/' + product.id}>{product.name}</NavLink></h5>
                                     <p>{product.size}</p>
                                     <span>{product.price} $</span>
                                     <div className="cartProductSettings">

@@ -16,8 +16,8 @@ function App() {
       <div className="App">
         <Layout>
           <Switch>
-            <Route path="/collections/:collectionName/:collectionId/:id" component={Product} />
-            <Route path="/collections/:collectionName/:collectionId" component={Collection} />
+            <Route path="/collections/:collectionId/:id" component={Product} />
+            <Route path="/collections/:collectionId" component={Collection} />
             <Route path="/collections" component={Collections} />
             <Route path="/login" component={Login} />
             <Route path="/sign-up" component={Signup} />

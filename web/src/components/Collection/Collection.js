@@ -20,7 +20,7 @@ const Collection = (props) => (
             ) : null}
             <h2>{props.name}</h2>
             <NavLink to={{
-                pathname: '/collections/' + props.name.toLowerCase().replace('-', '').replace(' ', '-') + '/' + props.collectionId,
+                pathname: '/collections/' + props.collectionId,
                 state: {
                     collectionName: props.name
                 }

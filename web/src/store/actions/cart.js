@@ -54,7 +54,7 @@ export const addToCartDBFailed = (error) => {
     };
 };
 
-export const addToCartDB = (id, name, price, size, qty, image, login) => {
+export const addToCartDB = (id, name, price, size, qty, image, collectionId, login) => {
     return dispatch => {
         dispatch(addToCartDBStart());
         axios.post("/response/cart/addCartItem.php?login=" + login, {
@@ -63,7 +63,7 @@ export const addToCartDB = (id, name, price, size, qty, image, login) => {
             qty: qty
         })
             .then(res => {
-                if (res.data.error === undefined) dispatch(addToCart(id, name, price, size, +qty, image));
+                if (res.data.error === undefined) dispatch(addToCart(id, name, price, size, +qty, image, collectionId));
                 else dispatch(addToCartDBFailed(res.data.error));
             })
             .catch(error => {
@@ -72,7 +72,7 @@ export const addToCartDB = (id, name, price, size, qty, image, login) => {
     };
 };
 
-export const addToCart = (id, name, price, size, qty, image) => {
+export const addToCart = (id, name, price, size, qty, image, collectionId) => {
     return {
         type: actionTypes.ADD_TO_CART,
         id: id,
@@ -80,7 +80,8 @@ export const addToCart = (id, name, price, size, qty, image) => {
         price: price,
         image: image,
         size: size,
-        qty: qty
+        qty: qty,
+        collectionId: collectionId
     };
 };
 

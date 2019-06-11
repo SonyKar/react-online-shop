@@ -30,6 +30,7 @@ class Product extends Component {
                             desc={this.props.product.description}
                             image={this.props.product.image}
                             opencart={this.props.opencart}
+                            collectionId={this.props.match.params.collectionId}
                         />
                     </div>
                 </React.Fragment>

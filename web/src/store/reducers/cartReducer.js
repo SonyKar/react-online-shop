@@ -67,7 +67,8 @@ const addToCart = (state, action) => {
             price: action.price,
             image: action.image,
             size: action.size,
-            qty: action.qty
+            qty: action.qty,
+            collectionId: action.collectionId
         };
         newProducts = [
             ...newProducts,

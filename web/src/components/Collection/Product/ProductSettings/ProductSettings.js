@@ -41,7 +41,7 @@ class ProductSettings extends Component {
                     <p>Quantity:</p>
                     <QuantitySelection updateState={this.setQuantityHandler} />
                     <button type="button" className="btn btn-dark w-100 mt-2 mb-2" onClick={() => {
-                        this.props.login.length !== 0 ? this.props.onAddToCartDB(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image, this.props.login) : this.props.onAddToCart(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image);
+                        this.props.login.length !== 0 ? this.props.onAddToCartDB(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image, this.props.collectionId, this.props.login) : this.props.onAddToCart(this.props.id, this.props.name, this.props.price, this.state.size, this.state.qty, this.props.image, this.props.collectionId);
                     }} >ADD TO CART</button>
                     <CollapsableBlock collapsableHeader="Description">
                         {this.props.desc}
@@ -60,7 +60,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddToCart: (id, name, price, size, qty, image) => dispatch(actions.addToCart(id, name, price, size, qty, image)),
+        onAddToCart: (id, name, price, size, qty, image, collectionId) => dispatch(actions.addToCart(id, name, price, size, qty, image, collectionId)),
         onAddToCartDB: (id, name, price, size, qty, image, login) => dispatch(actions.addToCartDB(id, name, price, size, qty, image, login))
     };
 };
