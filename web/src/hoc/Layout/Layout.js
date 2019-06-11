@@ -11,9 +11,7 @@ import QuantitySelection from '../../components/QuantitySelection/QuantitySelect
 import * as actions from '../../store/actions/index';
 
 class Layout extends Component {
-    state = { 
-        showSideMenu: false,
-        showShoppingCart: false,
+    state = {
         price: 0
     }
 
@@ -21,28 +19,6 @@ class Layout extends Component {
         if (this.props.login.length !== 0 && this.props.cart.length === 0 && !this.props.loading) {
             this.props.onFetchCart(this.props.login);
         }
-    }
-
-    sideDrawerClosedHandler = () => {
-        this.setState({showSideMenu: false});
-    }
-
-    sideDrawerToggleHandler = () => {
-        this.setState((prevState) => {
-            return {showSideMenu: !prevState.showSideMenu};
-        });
-        this.shoppingCartClosedHandler();
-    }
-
-    shoppingCartClosedHandler = () => {
-        this.setState({showShoppingCart: false});
-    }
-
-    shoppingCartToggleHandler = () => {
-        this.setState((prevState) => {
-            return {showShoppingCart: !prevState.showShoppingCart};
-        });
-        this.sideDrawerClosedHandler();
     }
 
     render() {
@@ -103,13 +79,13 @@ class Layout extends Component {
         return (
             <React.Fragment>
                 <Navbar 
-                    drawerToggle={this.sideDrawerToggleHandler} 
-                    shoppingCartToggle={this.shoppingCartToggleHandler}
+                    drawerToggle={this.props.sideDrawerToggleHandler} 
+                    shoppingCartToggle={this.props.shoppingCartToggleHandler}
                 />
                 {/* Menu for Mobile Phones */}
                 <SideDrawer
-                    open={this.state.showSideMenu} 
-                    closed={this.sideDrawerClosedHandler}
+                    open={this.props.showSideMenu} 
+                    closed={this.props.sideDrawerClosedHandler}
                     MobileOnly
                     closeOnClick
                 >
@@ -123,8 +99,8 @@ class Layout extends Component {
                 </SideDrawer>
                 {/* Shopping Cart */}
                 <SideDrawer
-                    open={this.state.showShoppingCart} 
-                    closed={this.shoppingCartClosedHandler} 
+                    open={this.props.showShoppingCart} 
+                    closed={this.props.shoppingCartClosedHandler} 
                     right
                     light
                 >

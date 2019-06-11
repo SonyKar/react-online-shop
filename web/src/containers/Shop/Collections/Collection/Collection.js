@@ -210,7 +210,7 @@ class Collection extends Component {
     }
 
     render() {
-        let productClasses = "Product";
+        let productClasses = "Product mt-1";
         productClasses += this.state.expand ? " col-6" : " col-4";
 
         let products = <Spinner />;

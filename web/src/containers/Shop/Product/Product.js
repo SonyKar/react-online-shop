@@ -29,7 +29,7 @@ class Product extends Component {
                             price={this.props.product.price}
                             desc={this.props.product.description}
                             image={this.props.product.image}
-                            opencart={this.props.opencart}
+                            openCart={this.props.openCart}
                             collectionId={this.props.match.params.collectionId}
                         />
                     </div>
