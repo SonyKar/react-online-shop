@@ -40,3 +40,46 @@ export const fetchCollections = () => {
             });
     }
 }
+
+export const addCollectionStart = () => {
+    return {
+        type: actionTypes.ADD_COLLECTION_START
+    };
+};
+
+export const addCollectionSuccess = (name, image, id) => {
+    return {
+        type: actionTypes.ADD_COLLECTION_SUCCESS,
+        collection: {
+            name: name,
+            image: image,
+            id: id
+        }
+    };
+};
+
+export const addCollectionFailed = (error) => {
+    return {
+        type: actionTypes.ADD_COLLECTION_FAILED,
+        error: error
+    };
+};
+
+export const addCollection = (name, image) => {
+    return dispatch => {
+        dispatch(addCollectionStart());
+        let formData = new FormData();
+        formData.append('name', name);
+        formData.append('image', image);
+
+        axios.post('/response/collections/addCollection.php', formData)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.error === undefined) dispatch(addCollectionSuccess(name, image.name, res.data));
+                else dispatch(addCollectionFailed(res.data.error));
+            })
+            .catch(error => {
+                dispatch(addCollectionFailed(error));
+            });
+    };
+};

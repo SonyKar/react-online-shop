@@ -20,7 +20,7 @@ const FullModal = (props) => {
         <div className={fullModalClasses}>
             <div className="container" style={{height: '100%'}}>
                 <div className="d-flex flex-column justify-content-space-between align-items-center" style={{height: '100%'}}>
-                    <div className="w-100">
+                    <div className="col-6" style={{margin: 'auto'}}>
                         {props.children}
                     </div>
                     <div className="w-100 text-center">

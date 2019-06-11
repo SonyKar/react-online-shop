@@ -28,6 +28,30 @@ const fetchCollectionsFailed = (state, action) => {
     }
 }
 
+const addCollectionStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const addCollectionSuccess = (state, action) => {
+    let newCollections = state.collections.slice();
+    newCollections.unshift(action.collection);
+    return {
+        ...state,
+        loading: false,
+        collections: newCollections
+    };
+};
+
+const addCollectionFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.FETCH_COLLECTIONS_START:
@@ -36,6 +60,12 @@ const reducer = (state = initialState, action) => {
             return fetchCollectionsSuccess(state, action);
         case actionTypes.FETCH_COLLECTIONS_FAILED:
             return fetchCollectionsFailed(state, action);
+        case actionTypes.ADD_COLLECTION_START:
+            return addCollectionStart(state, action);
+        case actionTypes.ADD_COLLECTION_SUCCESS:
+            return addCollectionSuccess(state, action);
+        case actionTypes.ADD_COLLECTION_FAILED:
+            return addCollectionFailed(state, action);
         default: 
             return state;
     }
