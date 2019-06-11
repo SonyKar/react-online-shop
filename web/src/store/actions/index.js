@@ -29,6 +29,6 @@ export {
 } from './cart';
 
 export {
-    logIn,
-    logOut
+    login,
+    logout
 } from './auth';

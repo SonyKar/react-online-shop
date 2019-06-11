@@ -7,6 +7,7 @@ import Home from './containers/Home/Home';
 import Collections from './containers/Shop/Collections/Collections';
 import Collection from './containers/Shop/Collections/Collection/Collection';
 import Product from './containers/Shop/Product/Product';
+import Login from './components/Auth/Login/Login';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/collections/:collectionName/:collectionId/:id" component={Product} />
             <Route path="/collections/:collectionName/:collectionId" component={Collection} />
             <Route path="/collections" component={Collections} />
+            <Route path="/login" component={Login} />
             <Route path="/" exact component={Home} />
           </Switch>
         </Layout>

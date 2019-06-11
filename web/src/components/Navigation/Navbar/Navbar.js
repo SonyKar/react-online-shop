@@ -13,15 +13,15 @@ import * as actions from '../../../store/actions/index';
 const Navbar = (props) => {
     let auth = (
         <React.Fragment>
-            {/* <NavLink exact to="/auth">Log in</NavLink> */}
-            <button onClick={props.onLogIn}>Log In</button>
+            <NavLink exact to="/login">Log in</NavLink>
+            {/* <button onClick={props.onLogIn}>Log In</button> */}
             <NavLink exact to="/sign-up">Sign up</NavLink>
         </React.Fragment>
     );
     if (props.login !== '') {
         auth = (
             <React.Fragment>
-                <h5 className="m-0">Welcome, {props.login} <button onClick={props.onLogOut}>Log Out</button></h5>
+                <h5 className="m-0">Welcome, {props.login} <button onClick={props.onLogout}>Log Out</button></h5>
             </React.Fragment>
         );
     }
@@ -57,12 +57,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogIn: () => {
-            dispatch(actions.logIn());
-            dispatch(actions.emptyCart());
-        },
-        onLogOut: () => {
-            dispatch(actions.logOut());
+        onLogout: () => {
+            dispatch(actions.logout());
             dispatch(actions.emptyCart());
         }
     };

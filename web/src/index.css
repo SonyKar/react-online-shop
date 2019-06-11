@@ -25,6 +25,10 @@ main {
   font-weight: bold;
   margin: 5rem 0;
 }
+.error {
+  color: #FDA49A;
+  text-align: center;
+}
 a {
   text-decoration: none;
 }
