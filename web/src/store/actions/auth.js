@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import * as actions from '../actions/index';
 import axios from '../../axios';
 
 export const loginStart = () => {
@@ -22,7 +23,7 @@ export const loginFailed = (error) => {
     };
 };
 
-export const login = (login, password) => {
+export const login = (login, password, products) => {
     return dispatch => {
         dispatch(loginStart());
         let formData = new FormData();
@@ -31,7 +32,10 @@ export const login = (login, password) => {
 
         axios.post('/response/auth/login.php', formData)
             .then(res => {
-                if (res.data.error === undefined) dispatch(loginSuccess(login, res.data.role));
+                if (res.data.error === undefined) {
+                    dispatch(loginSuccess(login, res.data.role));
+                    if (products.length !== 0) dispatch(actions.mergeCartAndFetch(products, login));
+                }
                 else dispatch(loginFailed(res.data.error));
             })
             .catch(error => {
@@ -61,7 +65,7 @@ export const signupFailed = (error) => {
     };
 };
 
-export const signup = (login, password, password2) => {
+export const signup = (login, password, password2, products) => {
     return dispatch => {
         dispatch(signupStart());
         let formData = new FormData();
@@ -71,7 +75,10 @@ export const signup = (login, password, password2) => {
 
         axios.post('/response/auth/signup.php', formData)
             .then(res => {
-                if (res.data.error === undefined) dispatch(signupSuccess(login, res.data.role));
+                if (res.data.error === undefined) {
+                    dispatch(signupSuccess(login, res.data.role));
+                    if (products.length !== 0) dispatch(actions.mergeCartAndFetch(products, login));
+                }
                 else dispatch(signupFailed(res.data.error));
             })
             .catch(error => {

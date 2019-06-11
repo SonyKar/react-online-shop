@@ -25,7 +25,8 @@ export {
     updateCart,
     updateCartDB,
     fetchCart,
-    emptyCart
+    emptyCart,
+    mergeCartAndFetch
 } from './cart';
 
 export {

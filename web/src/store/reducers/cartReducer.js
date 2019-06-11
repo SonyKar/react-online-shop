@@ -32,13 +32,6 @@ const fetchCartFailed = (state, action) => {
     };
 };
 
-const emptyCart = (state, action) => {
-    return {
-        ...state,
-        cart: []
-    };
-};
-
 const addToCartDBStart = (state, action) => {
     return {
         ...state,
@@ -160,8 +153,37 @@ const updateCart = (state, action) => {
         cart: newProducts,
         loading: false,
         price: price
-    }
-}
+    };
+};
+
+const emptyCart = (state, action) => {
+    return {
+        ...state,
+        cart: [],
+        price: 0
+    };
+};
+
+const mergeAndFetchStart = (state, action) => {
+    return {
+        ...state,
+        loading: true
+    };
+};
+
+const mergeAndFetchSuccess = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
+
+const mergeAndFetchFailed = (state, action) => {
+    return {
+        ...state,
+        loading: false
+    };
+};
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -171,8 +193,6 @@ const reducer = (state = initialState, action) => {
             return fetchCartSuccess(state, action);
         case actionTypes.FETCH_CART_FAILED:
             return fetchCartFailed(state, action);
-        case actionTypes.EMPTY_CART:
-            return emptyCart(state, action);
         case actionTypes.ADD_TO_CART_DB_START:
             return addToCartDBStart(state, action);
         case actionTypes.ADD_TO_CART_DB_FAILED:
@@ -191,6 +211,14 @@ const reducer = (state = initialState, action) => {
             return updateCartDBFailed(state, action);
         case actionTypes.UPDATE_CART:
             return updateCart(state, action);
+        case actionTypes.EMPTY_CART:
+            return emptyCart(state, action);
+        case actionTypes.MERGE_CART_AND_FETCH_START:
+            return mergeAndFetchStart(state, action);
+        case actionTypes.MERGE_CART_AND_FETCH_SUCCESS:
+            return mergeAndFetchSuccess(state, action);
+        case actionTypes.MERGE_CART_AND_FETCH_FAILED:
+            return mergeAndFetchFailed(state, action);
         default: 
             return state; 
     }

@@ -42,13 +42,18 @@ class QuantitySelection extends Component {
     }
     
     onChangeHandler = (event) => {
-        if (+event.target.value > 0) {
+        if (+event.target.value || event.target.value === '') {
             this.setState({quantity: +event.target.value});
         }
     }
 
     onBlurHander = (event) => {
         if (+event.target.value > 0) {
+            this.props.updateState(+event.target.value);
+        } else {
+            this.setState({
+                quantity: 1
+            });
             this.props.updateState(+event.target.value);
         }
     }

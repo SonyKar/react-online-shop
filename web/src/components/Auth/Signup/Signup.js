@@ -66,7 +66,7 @@ class Signup extends Component {
             formData[formElementIdentifier] = this.state.signUpForm[formElementIdentifier].value;
         }
 
-        this.props.onSignup(formData.login, formData.password, formData.passwordRepeat);
+        this.props.onSignup(formData.login, formData.password, formData.passwordRepeat, this.props.cart);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -142,15 +142,15 @@ const mapStateToProps = state => {
     return {
         error: state.auth.error,
         loading: state.auth.loading,
-        role: state.auth.person.role
+        role: state.auth.person.role,
+        cart: state.cart.cart
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSignup: (login, password, password2) => {
-            dispatch(actions.signup(login, password, password2));
-            dispatch(actions.emptyCart());
+        onSignup: (login, password, password2, cart) => {
+            dispatch(actions.signup(login, password, password2, cart));
         }
     };
 };

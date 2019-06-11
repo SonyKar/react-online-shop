@@ -51,7 +51,7 @@ class Login extends Component {
             formData[formElementIdentifier] = this.state.loginForm[formElementIdentifier].value;
         }
 
-        this.props.onLogin(formData.login, formData.password);
+        this.props.onLogin(formData.login, formData.password, this.props.cart);
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -127,15 +127,15 @@ const mapStateToProps = state => {
     return {
         error: state.auth.error,
         loading: state.auth.loading,
-        role: state.auth.person.role
+        role: state.auth.person.role,
+        cart: state.cart.cart
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: (login, password) => {
-            dispatch(actions.login(login, password));
-            dispatch(actions.emptyCart());
+        onLogin: (login, password, cart) => {
+            dispatch(actions.login(login, password, cart));
         }
     };
 };

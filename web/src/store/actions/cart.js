@@ -168,3 +168,51 @@ export const emptyCart = () => {
         type: actionTypes.EMPTY_CART
     };
 };
+
+export const mergeCartAndFetchStart = () => {
+    return {
+        type: actionTypes.MERGE_CART_AND_FETCH_START
+    };
+};
+
+export const mergeCartAndFetchSuccess = () => {
+    return {
+        type: actionTypes.MERGE_CART_AND_FETCH_SUCCESS
+    };
+};
+
+export const mergeCartAndFetchFailed = (error) => {
+    return {
+        type: actionTypes.MERGE_CART_AND_FETCH_FAILED,
+        error: error
+    };
+};
+
+export const mergeCartAndFetch = (products, login) => {
+    return dispatch => {
+        dispatch(mergeCartAndFetchStart());
+        let length = products.length;
+        products.forEach((item, index) => {
+            let formData = new FormData();
+            formData.append('id', item.id);
+            formData.append('size', item.size);
+            formData.append('qty', item.qty);
+
+            axios.post('/response/cart/mergeCartItems.php?login=' + login, formData)
+                .then(res => {
+                    if (index === length - 1) {
+                        if (res.data.error === undefined) {
+                            dispatch(mergeCartAndFetchSuccess());
+                            dispatch(emptyCart());
+                            dispatch(fetchCart(login));
+                        } else {
+                            dispatch(mergeCartAndFetchFailed(res.data.error));
+                        }
+                    }
+                })
+                .catch(error => {
+                    dispatch(mergeCartAndFetchFailed(error));
+                });
+        });
+    };
+};
