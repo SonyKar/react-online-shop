@@ -9,7 +9,7 @@ const CollectionMenu = (props) => (
     <div className="CollectionMenu">
         <div className="row">
             <div className="whiteSpace">
-                <div className="productsSize">
+                <div className="productsSize DesktopOnly">
                     <FontAwesomeIcon icon={faCompress} className={props.isExpand ? "" : "selected"} onClick={props.shrink} />
                     <FontAwesomeIcon icon={faExpand} className={props.isExpand ? "selected": ""} onClick={props.expand} />
                 </div>
