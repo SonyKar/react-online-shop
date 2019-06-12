@@ -24,3 +24,26 @@
 .Invalid {
     border: 1px solid #FDA49A;
 }
+
+.Input input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.Input input[type="file"] + .Label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: #232323;
+    display: inline-block;
+    cursor: pointer;
+    padding: 1rem 2rem;
+}
+
+.Input input[type="file"]:focus + .Label,
+.Input input[type="file"] + .Label:hover {
+    background-color: #848484;
+}

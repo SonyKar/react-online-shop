@@ -36,10 +36,24 @@ const Input = (props) => {
             inputElement = <input className={inputClasses} {...props.elementConfig} value={props.value} onChange={props.changed}/>;
     }
 
-    return (
-        <div className="Input">
+    let fileInput = (
+        <React.Fragment>
             <label htmlFor={props.idName} className="Label">{props.label}</label>
             {inputElement}
+        </React.Fragment>
+    );
+    if (props.elementConfig.type === 'file') {
+        fileInput = (
+            <React.Fragment>
+                {inputElement}
+                <label htmlFor={props.idName} className="Label">{props.label}</label>
+            </React.Fragment>
+        ); 
+    }
+
+    return (
+        <div className="Input">
+            {fileInput}            
         </div>
     );
 }

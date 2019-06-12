@@ -63,7 +63,8 @@ class Collection extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'file',
-                    id: 'file'
+                    id: 'file',
+                    placeholder: "Choose a file..."
                 },
                 value: '',
                 files: null,
@@ -148,7 +149,11 @@ class Collection extends Component {
         if (event.target.files) {
             updatedFormElement = {
                 ...updatedFormElement,
-                files: event.target.files[0]
+                files: event.target.files[0],
+                elementConfig: {
+                    ...this.state.addItemForm[inputIdentifier].elementConfig,
+                    placeholder: event.target.files[0].name
+                }
             }
         }
         const updatedAddItemForm = {
@@ -180,6 +185,7 @@ class Collection extends Component {
         updatedForm.file.files = null;
         updatedForm.file.validation.required = true;
         updatedForm.file.valid = false;
+        updatedForm.file.elementConfig.placeholder="Choose a file...";
         this.setState({
             addItemForm: updatedForm,
             formIsValid: false,
