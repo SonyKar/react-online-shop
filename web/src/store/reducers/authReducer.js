@@ -75,7 +75,15 @@ const logout = (state, action) => {
         loading: false,
         error: ''
     };
-;}
+};
+
+const cleanAuth = (state, action) => {
+    return {
+        ...state,
+        error: '',
+        loading: false
+    }
+}
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
@@ -93,6 +101,8 @@ const reducer = (state = initialState, action) => {
             return signupFailed(state, action);
         case actionTypes.LOG_OUT:
             return logout(state, action);
+        case actionTypes.CLEAN_AUTH:
+            return cleanAuth(state, action);
         default:
             return state;
     }

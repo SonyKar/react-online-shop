@@ -6,6 +6,7 @@ import './Signup.css';
 import Input from '../../Input/Input';
 import { checkValidatity } from '../../../shared/utility';
 import * as actions from '../../../store/actions/index';
+import { cleanAuth } from '../../../store/actions/auth';
 
 class Signup extends Component {
     state = {
@@ -56,6 +57,10 @@ class Signup extends Component {
             }
         },
         formIsValid: false
+    }
+
+    componentDidMount() {
+        this.props.onCleanAuth();
     }
 
     signUpFormHandler = ( event ) => {
@@ -151,7 +156,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onSignup: (login, password, password2, cart) => {
             dispatch(actions.signup(login, password, password2, cart));
-        }
+        },
+        onCleanAuth: () => dispatch(actions.cleanAuth())
     };
 };
 

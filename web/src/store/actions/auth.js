@@ -92,3 +92,9 @@ export const logout = () => {
         type: actionTypes.LOG_OUT
     };
 };
+
+export const cleanAuth = () => {
+    return {
+        type: actionTypes.CLEAN_AUTH
+    };
+};

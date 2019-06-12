@@ -77,3 +77,4 @@ export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILED = 'SIGN_UP_FAILED';
 
 export const LOG_OUT = 'LOG_OUT';
+export const CLEAN_AUTH = 'CLEAN_AUTH';

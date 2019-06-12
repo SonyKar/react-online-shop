@@ -43,6 +43,10 @@ class Login extends Component {
         formIsValid: false
     }
 
+    componentDidMount() {
+        this.props.onCleanAuth();
+    }
+
     loginFormHandler = ( event ) => {
         event.preventDefault();
 
@@ -136,7 +140,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onLogin: (login, password, cart) => {
             dispatch(actions.login(login, password, cart));
-        }
+        },
+        onCleanAuth: () => dispatch(actions.cleanAuth())
     };
 };
 
