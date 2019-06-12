@@ -270,9 +270,12 @@ class Collection extends Component {
         return (
             <React.Fragment>
                 <div className="shopCollection">
-                    <FullModal show={this.state.addNewItem} close={this.addNewItemToggleHandler} clean={this.cleanForm}>
-                        { form }
-                    </FullModal>
+                    {
+                        this.props.role === 'admin' ? 
+                        <FullModal show={this.state.addNewItem} close={this.addNewItemToggleHandler} clean={this.cleanForm}>
+                            { form }
+                        </FullModal> : null
+                    }
                     <h2 className="CollectionHeader">{this.state.collectionName}</h2>
                     <CollectionMenu expand={this.expandProductsHandler} shrink={this.shrinkProductsHandler} isExpand={this.state.expand} />
                     <div className="container">

@@ -196,9 +196,12 @@ class Collections extends Component {
 
         return (
             <React.Fragment>
-                <FullModal show={this.state.addNewCollection} close={this.addNewCollectionToggleHandler} clean={this.cleanForm}>
-                    { form }
-                </FullModal>
+                {
+                    this.props.role === 'admin' ? 
+                    <FullModal show={this.state.addNewCollection} close={this.addNewCollectionToggleHandler} clean={this.cleanForm}>
+                        { form }
+                    </FullModal> : null
+                }
                 <div className="Collections">
                     <div className="container">
                         <div className="row">
