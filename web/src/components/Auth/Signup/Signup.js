@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import './Signup.css';
 import Input from '../../Input/Input';
 import { checkValidatity } from '../../../shared/utility';
 import * as actions from '../../../store/actions/index';
-import { cleanAuth } from '../../../store/actions/auth';
 
 class Signup extends Component {
     state = {
@@ -126,7 +124,7 @@ class Signup extends Component {
         );
 
         if (this.props.role !== '') {
-            form = <Redirect from="/login" to="/" />
+            this.props.history.goBack();
         }
         
         return (

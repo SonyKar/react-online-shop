@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import './Login.css';
 import Input from '../../Input/Input';
@@ -110,7 +109,7 @@ class Login extends Component {
         );
 
         if (this.props.role !== '') {
-            form = <Redirect from="/login" to="/" />
+            this.props.history.goBack();
         }
         
         return (
